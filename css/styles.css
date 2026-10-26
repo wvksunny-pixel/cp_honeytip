@@ -371,11 +371,86 @@ input[type="text"]:focus, textarea:focus { outline: 3px solid var(--highlight); 
 .reverse-list { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
 .reverse-list li { padding-left: 26px; position: relative; }
 .reverse-list li::before { content: "🧩"; position: absolute; left: 0; font-size: 15px; }
+.five[hidden] { display: none; }
 .five { list-style: none; padding: 0; margin: 0 0 8px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 .five li { background: var(--paper); border: 1px solid var(--line); border-top: 4px solid var(--brand); border-radius: 12px; padding: 18px 16px; }
 .five b { display: block; font-size: 16px; margin: 6px 0 4px; }
 .five p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.6; }
 .five-num { font-weight: 800; color: var(--accent); font-size: 22px; }
+
+/* 그림 → 퍼즐 체험 */
+.pz-intro { margin: -4px 0 20px; font-size: 18px; max-width: 760px; }
+.pz { max-width: 760px; margin: 0 auto 8px; }
+.pz-board { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: clamp(10px, 2.4vw, 22px); box-shadow: 0 18px 40px -26px rgba(45, 41, 38, .45); }
+.pz-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.pz-svg .a-kicker { font: 800 13px var(--font); fill: var(--accent); }
+.pz-svg .a-stamp { font: 800 22px var(--font); fill: #ffb27a; }
+/* 빈 자리(슬롯): 점선 윤곽 + 번호·키워드 */
+.pz-slot-shape { fill: #f6f0e9; stroke: #cbbcad; stroke-width: 2; stroke-dasharray: 7 6; transition: fill .3s, stroke .3s; }
+.pz-slot.current .pz-slot-shape { fill: #fff3e8; stroke: var(--brand); stroke-width: 3.5; stroke-dasharray: none; filter: drop-shadow(0 0 6px rgba(255, 107, 0, .35)); }
+.pz-slot-label circle { fill: #fff; stroke: #d9cdc0; stroke-width: 2; }
+.pz-slot-num { font: 800 22px var(--font); fill: #a99a8c; text-anchor: middle; }
+.pz-slot-tag { font: 700 19px var(--font); fill: #a99a8c; text-anchor: middle; }
+.pz-slot.current .pz-slot-label circle { fill: var(--brand); stroke: var(--brand); }
+.pz-slot.current .pz-slot-num { fill: #fff; }
+.pz-slot.current .pz-slot-tag { fill: var(--accent); }
+.pz-slot.filled .pz-slot-label { opacity: 0; }
+/* 조각: 서로 다른 방향에서 날아와 제자리에 들어가요 */
+.pz-piece { transform-box: fill-box; transform-origin: center; transform: translate(var(--dx), var(--dy)) rotate(var(--r)); opacity: 0; pointer-events: none;
+  transition: transform .4s cubic-bezier(.2, .75, .25, 1), opacity .25s ease; }
+.pz-piece.placed { transform: none; opacity: 1; }
+.pz-piece.snap { animation: pz-snap .16s ease-out; }
+@keyframes pz-snap { from { transform: scale(1.035); } to { transform: scale(1); } }
+.pz-veil { fill: #ece5dd; opacity: .9; transition: opacity .45s ease .2s; }
+.pz-piece.placed .pz-veil { opacity: 0; }
+.pz-edge { fill: none; stroke: #fff; stroke-width: 3; stroke-linejoin: round; transition: stroke-opacity .4s; }
+.pz-tag rect { fill: rgba(255, 255, 255, .92); stroke: rgba(200, 79, 0, .25); }
+.pz-tag text { font: 700 15px var(--font); fill: var(--accent); white-space: pre; }
+.pz-tag .n { font-weight: 900; fill: var(--brand); }
+.pz-tag { transition: opacity .4s; }
+/* 완성: 이음새만 은은하게 남겨 한 장의 그림처럼 */
+.pz.is-complete .pz-edge { stroke-opacity: .55; stroke-width: 2; }
+.pz.is-complete .pz-slot-shape { stroke: transparent; }
+.pz.is-complete .pz-board { border-color: var(--brand); box-shadow: 0 0 0 4px var(--highlight), 0 18px 40px -26px rgba(45, 41, 38, .45); }
+/* 아래 패널 */
+.pz-panel { margin-top: 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 20px 24px 22px; }
+.pz-progress { display: flex; align-items: center; gap: 12px; }
+.pz-bar { flex: 1; height: 10px; background: var(--bg-alt); border-radius: 999px; overflow: hidden; }
+.pz-bar i { display: block; height: 100%; width: 0; background: var(--brand); border-radius: 999px; transition: width .4s ease; }
+#pz-pct { font-weight: 800; color: var(--accent); min-width: 44px; text-align: right; }
+.pz-dots { list-style: none; padding: 0; margin: 12px 0 14px; display: flex; gap: 8px; }
+.pz-dots li span { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; font-size: 13px; font-weight: 800; color: #a99a8c; border: 2px dashed #d9cdc0; }
+.pz-dots li.done span { background: var(--accent); border: 2px solid var(--accent); color: #fff; }
+.pz-dots li.now span { border: 2px solid var(--brand); color: var(--accent); box-shadow: 0 0 0 3px var(--highlight); }
+.pz-dots li.done.now span { color: #fff; }
+.pz-text { min-height: 128px; transition: opacity .17s ease, transform .17s ease; }
+.pz-text.is-swapping { opacity: 0; transform: translateY(6px); }
+.pz-num { margin: 0; font-size: 13px; font-weight: 800; color: var(--accent); letter-spacing: .04em; }
+.pz-step h4 { margin: 2px 0 6px; font-size: clamp(21px, 2.6vw, 26px); letter-spacing: -.02em; }
+.pz-desc { margin: 0 0 10px; font-size: 17px; line-height: 1.7; }
+.pz-meaning { margin: 0; font-size: 14px; color: var(--muted); }
+.pz-meaning b { color: var(--accent); }
+.pz-done-title { margin: 0 0 6px; font-size: clamp(22px, 2.8vw, 28px); font-weight: 800; letter-spacing: -.02em; color: var(--accent); }
+.pz-done p:last-child { margin: 0; font-size: 17px; }
+.pz-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 16px; }
+.pz-actions .btn { padding: 12px 20px; font-size: 15px; }
+.pz-actions .btn[hidden] { display: none; }
+.pz-prev { margin-right: auto; }
+.pz-prev:disabled { opacity: .35; cursor: default; }
+@media (max-width: 720px) {
+  .pz-panel { padding: 16px; }
+  .pz-actions .btn:not(.pz-prev) { flex: 1; }
+  .pz-desc { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .pz-piece, .pz-veil, .pz-bar i, .pz-text, .pz-edge, .pz-slot-shape { transition: none !important; }
+  .pz-piece.snap { animation: none; }
+}
+@media print {
+  .pz { display: none !important; }
+  #pz-src { display: grid !important; }
+}
 
 /* 예시로 이해하기 */
 .puzzle-intro { font-weight: 700; color: var(--accent); margin: 0 0 12px; }

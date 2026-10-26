@@ -356,12 +356,48 @@ claude</code><button class="copy-btn" data-copy="cd &quot;C:\Users\내이름\One
     </div>
 
     <h3 class="sub-title">그림 → 퍼즐, 5단계</h3>
-    <ol class="five">
-      <li><span class="five-num">1</span><b>최종 그림 상상하기</b><p>보는 사람이 어떤 생각과 감정을 가졌으면 좋겠나요? 한 문장으로 적어봐요.</p></li>
-      <li><span class="five-num">2</span><b>필요한 장면 찾기</b><p>그 인상을 만들려면 어떤 정보와 장면을 꼭 보여줘야 할까요?</p></li>
-      <li><span class="five-num">3</span><b>퍼즐 조각 모으기</b><p>장면마다 필요한 원본 자료·사진·데이터·진행 기록을 OneDrive에서 찾아요.</p></li>
-      <li><span class="five-num">4</span><b>화면으로 설계하기</b><p>조각마다 챕터·타임라인·지도·사진·성과 카드 중 어울리는 옷을 입혀요.</p></li>
-      <li><span class="five-num">5</span><b>맞춰보고 다듬기</b><p>결과물을 보고 빠진 조각은 더하고, 그림에 안 맞는 건 덜어내요.</p></li>
+    <p class="pz-intro">처음부터 모든 답을 알 필요는 없어요. 먼저 어떤 그림을 만들지 상상하고, 필요한 조각을 하나씩 찾아봅시다.</p>
+
+    <!-- 퍼즐 체험: 조각·그림은 js/puzzle.js가 그려요. 단계 문구는 아래 목록(#pz-src)에서 읽어요. -->
+    <div class="pz" id="puzzle" hidden>
+      <div class="pz-board">
+        <svg class="pz-svg" id="pz-svg" viewBox="-24 -24 648 448" role="img" aria-labelledby="pz-svg-title">
+          <title id="pz-svg-title">결과보고서 화면을 이루는 퍼즐 5조각</title>
+        </svg>
+      </div>
+      <div class="pz-panel">
+        <div class="pz-progress">
+          <div class="pz-bar" role="progressbar" aria-label="퍼즐 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="pz-bar"></i></div>
+          <span id="pz-pct">0%</span>
+        </div>
+        <ol class="pz-dots" id="pz-dots" aria-hidden="true"></ol>
+        <div class="pz-text" id="pz-text" aria-live="polite">
+          <div class="pz-step" id="pz-step">
+            <p class="pz-num" id="pz-num"></p>
+            <h4 id="pz-title"></h4>
+            <p class="pz-desc" id="pz-desc"></p>
+            <p class="pz-meaning" id="pz-piece"></p>
+          </div>
+          <div class="pz-done" id="pz-done" hidden>
+            <p class="pz-done-title">완성! 이제 무엇을 만들지 알겠어요.</p>
+            <p>“큰 그림이 정해지면, 필요한 자료를 찾고 어떤 화면으로 보여줄지 결정하기가 훨씬 쉬워집니다.”</p>
+          </div>
+        </div>
+        <div class="pz-actions">
+          <button type="button" class="btn btn-ghost pz-prev" id="pz-prev">← 이전</button>
+          <button type="button" class="btn btn-primary" id="pz-next">다음 조각 맞추기</button>
+          <button type="button" class="btn btn-ghost" id="pz-reset" hidden>처음부터 다시 보기</button>
+          <a class="btn btn-primary" id="pz-example" href="#example" hidden>다음: 예시 보기 →</a>
+        </div>
+      </div>
+    </div>
+
+    <ol class="five" id="pz-src">
+      <li data-tag="목표·메시지" data-piece="결과보고의 목표와 핵심 메시지"><span class="five-num">1</span><b>최종 그림 상상하기</b><p>보는 사람이 어떤 생각과 감정을 가졌으면 좋겠나요? 한 문장으로 적어봐요.</p></li>
+      <li data-tag="장면·정보" data-piece="보여줄 주요 장면과 정보"><span class="five-num">2</span><b>필요한 장면 찾기</b><p>그 인상을 만들려면 어떤 정보와 장면을 꼭 보여줘야 할까요?</p></li>
+      <li data-tag="자료·사진·데이터" data-piece="원본 자료와 사진, 데이터"><span class="five-num">3</span><b>퍼즐 조각 모으기</b><p>장면마다 필요한 원본 자료·사진·데이터·진행 기록을 OneDrive에서 찾아요.</p></li>
+      <li data-tag="구성·시각화" data-piece="웹페이지의 구성과 시각화"><span class="five-num">4</span><b>화면으로 설계하기</b><p>조각마다 챕터·타임라인·지도·사진·성과 카드 중 어울리는 옷을 입혀요.</p></li>
+      <li data-tag="검토·완성" data-piece="검토와 수정, 최종 완성"><span class="five-num">5</span><b>맞춰보고 다듬기</b><p>결과물을 보고 빠진 조각은 더하고, 그림에 안 맞는 건 덜어내요.</p></li>
     </ol>
     <p class="note">처음부터 퍼즐을 전부 맞출 필요는 없어요. <b>큰 그림만 먼저 그리고, 빈칸은 자료를 찾아가면서 채우면</b> 됩니다. 실제로 어떻게 나뉘는지는 <a href="#example">참고하기 › 제작 예시</a>(배민 도시락 사업, 가상)에서 볼 수 있어요.</p>
   </div>
@@ -1077,6 +1113,7 @@ input 폴더 원본은 수정하지 말고 결과물은 output 폴더에만 만�
 <script src="js/prompt.js"></script>
 <script src="js/making-of.js"></script>
 <script src="js/design-plan.js"></script>
+<script src="js/puzzle.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

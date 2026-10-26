@@ -55,6 +55,7 @@ gipa-vibecoding-guide/
 ├─ js/prompt.js      GPT 프롬프트 생성 문구(스타일별 설명·챕터 등)
 ├─ js/making-of.js   제작기에 실린 실제 입력값(내가 GPT에 쓴 말, GPT가 정리한 프롬프트, 고도화 프롬프트)
 ├─ js/design-plan.js 워크시트 → 설계안 → GPT 프롬프트, 의도 기반 수정 프롬프트 문구
+├─ js/puzzle.js      3단계 ① ‘그림 → 퍼즐, 5단계’ 퍼즐 체험(조각 모양·완성 그림·단계 진행). 단계 문구는 index.html의 #pz-src 목록에서 읽음
 ├─ js/app.js         버튼·선택·복사·체크리스트 동작
 └─ README.md
 ```
