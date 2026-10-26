@@ -125,7 +125,8 @@
     var group = link.closest('.nav-group');
     var groupName = $('.nav-top', group).firstChild.textContent.trim();
     var num = $('i', link);
-    where.innerHTML = escapeHtml(groupName) + ' › <b>' + (num ? num.textContent + '. ' : '') + escapeHtml($('b', link).textContent) + '</b>';
+    var n = num && /^\d+$/.test(num.textContent) ? num.textContent + '. ' : '';
+    where.innerHTML = escapeHtml(groupName) + ' › <b>' + n + escapeHtml($('b', link).textContent) + '</b>';
   }
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {

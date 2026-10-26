@@ -98,9 +98,27 @@ button:focus-visible, a:focus-visible, input:focus-visible + *, textarea:focus-v
 .eyebrow { display: inline-block; font-size: 14px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 4px 12px; border-radius: 999px; margin: 0 0 24px; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 48px; align-items: center; }
 .hero-title { margin: 0 0 22px; font-weight: 800; letter-spacing: -.045em; line-height: 1.12; }
-.hero-title span { display: block; }
+.hero-title > span { display: block; }
 /* '모르겠고'는 코드 창처럼 힘 빼고, '잘 만들고 싶고'는 크게 */
-.ht-dunno { font-family: "Nanum Brush Script", var(--font); font-weight: 400; letter-spacing: 0; font-size: clamp(44px, 6.4vw, 72px); line-height: 1; color: #4a423d; margin-bottom: 10px; transform: rotate(-2deg); transform-origin: left center; }
+/* '코딩은 모르겠고,' — 하얀 코드 편집기 박스 + 빨간 물결 밑줄 + 손글씨 메모 */
+.hero-title > .ht-dunno { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 4px; margin-bottom: 18px; letter-spacing: 0; line-height: 1.2; }
+.cb { display: inline-block; max-width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 14px 30px -18px rgba(45, 41, 38, .35); overflow: hidden; vertical-align: top; }
+.cb-bar { display: flex; align-items: center; gap: 6px; padding: 9px 14px; background: #f8f4ef; border-bottom: 1px solid var(--line); font: 600 12px ui-monospace, Consolas, "D2Coding", monospace; color: var(--muted); }
+.cb-bar i { width: 9px; height: 9px; border-radius: 50%; background: #e3d8cd; }
+.cb-bar i:first-child { background: var(--brand); }
+.cb-bar b { margin-left: 8px; padding: 2px 10px; background: #fff; border: 1px solid var(--line); border-bottom: 0; border-radius: 6px 6px 0 0; font-weight: 700; color: var(--ink); }
+.cb-bar em { margin-left: auto; font-style: normal; color: var(--accent); }
+.cb-line { display: flex; align-items: baseline; gap: 14px; padding: 10px 22px 4px 14px; font-family: Consolas, "D2Coding", "Pretendard Variable", Pretendard, monospace; }
+.cb-ln { font-size: 13px; font-weight: 500; color: #c7bcb1; min-width: 12px; text-align: right; }
+.cb-code { font-size: clamp(26px, 4.2vw, 44px); font-weight: 700; color: var(--ink); white-space: nowrap; }
+.cb-kw { color: #7a5af0; }
+.cb-err { color: var(--accent); text-decoration: underline wavy #e5484d; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+.cb-caret { display: inline-block; width: .5em; height: .9em; margin-left: 4px; vertical-align: -0.08em; background: var(--brand); opacity: .85; }
+.cb-lint { display: block; margin: 8px 22px 2px 40px; padding: 5px 10px; width: fit-content; max-width: calc(100% - 52px); font: 500 12.5px var(--font); color: #a33a3d; background: #fff4f3; border: 1px solid #f3c7c4; border-radius: 8px; }
+.cb-lint b { color: var(--accent); }
+.cb-dim { padding-top: 6px; padding-bottom: 12px; }
+.cb-dim .cb-code { font-size: 14px; font-weight: 500; color: #a99a8c; white-space: normal; }
+.cb-note { display: inline-block; margin: 0 0 0 10px; font-family: "Nanum Brush Script", var(--font); font-size: clamp(26px, 3vw, 34px); font-weight: 400; color: var(--accent); transform: rotate(-6deg); white-space: nowrap; }
 .ht-want { font-size: clamp(40px, 7vw, 84px); color: var(--ink); }
 .ht-want em { font-style: normal; color: var(--accent); box-shadow: inset 0 -0.28em 0 var(--highlight); }
 .hero-subtitle { display: inline-block; margin: 0 0 22px; font-size: clamp(17px, 2vw, 21px); font-weight: 800; color: #fff; background: var(--dark); padding: 6px 16px; border-radius: 10px; }
@@ -452,6 +470,35 @@ input[type="text"]:focus, textarea:focus { outline: 3px solid var(--highlight); 
   #pz-src { display: grid !important; }
 }
 
+/* 7단계 ② GitHub에 올려 링크 만들기 */
+.nav-steps .nav-sub a { margin-left: 22px; padding-top: 6px; padding-bottom: 8px; }
+.nav-steps .nav-sub a i { width: 22px; height: 22px; font-size: 13px; background: transparent; }
+.nav-steps .nav-sub a b { font-size: 14px; }
+.pub-legend { display: flex; flex-wrap: wrap; gap: 8px; margin: -12px 0 20px; }
+.pub-legend span, .pub-tag { display: inline-block; font-size: 13px; font-weight: 800; padding: 3px 12px; border-radius: 999px; }
+.who-me, .pub-step.me .pub-tag { background: var(--bg-alt); color: var(--ink); border: 1px solid var(--line); }
+.who-ai, .pub-step.ai .pub-tag { background: var(--dark); color: #ffb27a; }
+.pub { list-style: none; padding: 0; margin: 0 0 40px; display: flex; flex-direction: column; gap: 14px; }
+.pub-step { position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; min-width: 0; }
+.pub-step.ai { border-left: 5px solid var(--dark); }
+.pub-step.me { border-left: 5px solid #d9cdc0; }
+.pub-step h3 { margin: 8px 0 8px; font-size: 19px; }
+.pub-step > p { margin: 0 0 8px; }
+.pub-step .card-copy { margin: 4px 0 10px; }
+.warn-inline { background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 10px; padding: 10px 14px; font-size: 15px; }
+.stuck { background: var(--bg-alt); border-radius: 20px; padding: 24px; margin-bottom: 8px; }
+.stuck-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.stuck-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; min-width: 0; }
+.stuck-q { margin: 0 0 10px; font-weight: 800; }
+.stuck-q::before { content: "😵 "; }
+.stuck-card .card-copy { padding: 16px 18px; }
+.stuck-card .cc-text { font-size: 14.5px; }
+.stuck-card > p.tiny { margin: 10px 0 0; }
+@media (max-width: 720px) {
+  .stuck-grid { grid-template-columns: 1fr; }
+  .pub-step, .stuck { padding: 16px; }
+}
+
 /* 예시로 이해하기 */
 .puzzle-intro { font-weight: 700; color: var(--accent); margin: 0 0 12px; }
 .puzzles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 32px; }
@@ -601,6 +648,9 @@ input[type="text"]:focus, textarea:focus { outline: 3px solid var(--highlight); 
   .topbar { padding: 10px 16px; }
   .hero { padding: 40px 0 40px; }
   .hero-intro { font-size: 16px; }
+  .cb { display: block; }
+  .cb-note { display: none; }
+  .cb-line { padding-right: 14px; }
   .promise-steps { grid-template-columns: 1fr; }
   .term-body { font-size: 12.5px; }
   .report { width: 88%; }
