@@ -80,8 +80,7 @@ button:focus-visible, a:focus-visible, input:focus-visible + *, textarea:focus-v
 .hero-title { margin: 0 0 22px; font-weight: 800; letter-spacing: -.045em; line-height: 1.12; }
 .hero-title span { display: block; }
 /* '모르겠고'는 코드 창처럼 힘 빼고, '잘 만들고 싶고'는 크게 */
-.ht-dunno { font-family: ui-monospace, "Cascadia Mono", Consolas, "D2Coding", monospace; font-weight: 500; letter-spacing: -.02em; font-size: clamp(26px, 4.2vw, 46px); color: var(--muted); margin-bottom: 6px; }
-.ht-dunno::before { content: "// "; color: #c7bcb1; }
+.ht-dunno { font-family: "Nanum Brush Script", var(--font); font-weight: 400; letter-spacing: 0; font-size: clamp(44px, 6.4vw, 72px); line-height: 1; color: #4a423d; margin-bottom: 10px; transform: rotate(-2deg); transform-origin: left center; }
 .ht-want { font-size: clamp(40px, 7vw, 84px); color: var(--ink); }
 .ht-want em { font-style: normal; color: var(--accent); box-shadow: inset 0 -0.28em 0 var(--highlight); }
 .hero-subtitle { display: inline-block; margin: 0 0 22px; font-size: clamp(17px, 2vw, 21px); font-weight: 800; color: #fff; background: var(--dark); padding: 6px 16px; border-radius: 10px; }
