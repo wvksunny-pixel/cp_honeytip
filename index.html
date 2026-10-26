@@ -10,8 +10,6 @@
   <meta property="og:url" content="https://wvksunny-pixel.github.io/cp_honeytip/" />
   <meta name="description" content="월드비전 기업파트너십팀 내부 교육용 — Claude Code와 GPT로 기업 후원 결과보고를 웹페이지로 만드는 실전 튜토리얼" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  <!-- 코드 박스 옆 손글씨 메모(← 진짜 모름)용: 그 글자들만 불러와서 가볍게 -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&amp;text=%E2%86%90%20%EC%A7%84%EC%A7%9C%20%EB%AA%A8%EB%A6%84&amp;display=swap" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -64,50 +62,37 @@
       <div class="hero-copy">
         <p class="eyebrow">기업파트너십팀 내부용 · 실무자의 AI 활용기</p>
         <h1 class="hero-title">
-          <span class="ht-dunno">
-            <span class="cb">
-              <span class="cb-bar" aria-hidden="true"><i></i><i></i><i></i><b>내마음.js</b><em>● 저장 안 됨</em></span>
-              <span class="cb-line"><span class="cb-ln" aria-hidden="true">1</span><span class="cb-code"><span class="cb-kw">코딩은</span> <span class="cb-err">모르겠고,</span><span class="cb-caret" aria-hidden="true"></span></span></span>
-              <span class="cb-lint" aria-hidden="true">⚠ 이해할 수 없는 구문입니다 · <b>괜찮아요, AI가 알아요</b></span>
-              <span class="cb-line cb-dim" aria-hidden="true"><span class="cb-ln">2</span><span class="cb-code">// TODO: 일단 AI한테 시켜보기</span></span>
-            </span>
-            <span class="cb-note" aria-hidden="true">← 진짜 모름</span>
-          </span>
-          <span class="ht-want">보고서는<br /><em>잘</em> 만들고 싶고</span>
+          <span>코딩은 모르겠고,</span>
+          <span>보고서는 <em>잘</em> 만들고 싶고</span>
         </h1>
         <p class="hero-subtitle">바이브코딩으로 기업 결과보고서 만들기</p>
-        <p class="hero-intro">우리 팀 평균 연령은 30대 후반…<br />연륜이 쌓여서 <b>직감은 딱 오는데</b>, 기술이 딸릴 때가 있죠.</p>
-        <p class="hero-intro">빠르게 변해가는 세상에서,<br /><b>AI와 함께 그 간극을 메워보시죠.</b></p>
+        <p class="hero-intro">우리 팀 평균 연령은 30대 후반…<br />연륜이 쌓여서 직감은 딱 오는데, 기술이 딸릴 때가 있죠.<br /><b>AI와 함께 그 간극을 메워봅시다.</b></p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#flow">자, 일단 AI한테 시켜봅시다 ↗</a>
           <a class="btn btn-ghost" href="#step1">1단계부터 따라 하기</a>
-          <a class="btn btn-ghost" href="#making">제작 후기</a>
         </div>
         <p class="hero-credit">항빈님이 알려주신 꿀팁에 더해, 제 꿀팁을 이어 붙였습니다.</p>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="term">
-          <div class="win-bar"><i></i><i></i><i></i><span>claude — 배민2026_결과보고</span></div>
-          <div class="term-body">
-            <p><span class="t-prompt">&gt;</span> 결과보고 웹페이지로 만들어줘. 기업 담당자가 보기 좋게.</p>
-            <p class="t-dim">· 원본 자료 확인 → 구성안 → 페이지 작성</p>
-            <p><span class="t-prompt">&gt;</span> 음… 좀 더 깔끔하게. 근데 따뜻하게.</p>
-            <p><span class="t-prompt">&gt;</span> 아까 그 색 말고, 그 전 색.</p>
-            <p><span class="t-prompt">&gt;</span> 다시. 이번엔 진짜 마지막.<span class="t-cursor"></span></p>
+      <!-- 오른쪽: 결과보고서 웹페이지 미리보기 하나 (예시 화면) -->
+      <figure class="hero-visual" aria-label="완성된 결과보고서 웹페이지 예시 화면">
+        <div class="browser">
+          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>결과보고.html</span></div>
+          <div class="preview">
+            <p class="pv-badge">예시 화면 · 수치는 가상</p>
+            <p class="pv-kicker">2026 기업 후원 결과보고</p>
+            <p class="pv-title">함께 만든 한 해</p>
+            <div class="pv-photo" aria-hidden="true"><svg viewBox="0 0 320 120" preserveAspectRatio="xMidYMid slice"><rect width="320" height="120" fill="#ffe7d3"/><circle cx="252" cy="34" r="16" fill="#fff"/><path d="M0 120 L84 52 L138 96 L196 58 L320 120 Z" fill="#ffb27a"/><path d="M0 120 L60 84 L110 120 Z" fill="#ff6b00" opacity=".8"/></svg></div>
+            <div class="pv-kpis">
+              <div><b>00<small>개교</small></b><span>참여 학교</span></div>
+              <div><b>0,000<small>식</small></b><span>지원 도시락</span></div>
+              <div><b>00<small>명</small></b><span>참여 인원</span></div>
+            </div>
+            <ol class="pv-timeline" aria-hidden="true"><li>기획</li><li>실행</li><li>점검</li><li>보고</li></ol>
           </div>
         </div>
-        <div class="report">
-          <div class="win-bar light"><i></i><i></i><i></i><span>output/index.html</span></div>
-          <div class="report-body">
-            <p class="r-kicker">2026 결과보고 · 예시 화면</p>
-            <p class="r-title">함께 만든 한 해</p>
-            <div class="r-kpis"><span><b>○○</b>참여 학교</span><span><b>○○</b>지원 건수</span><span><b>○○</b>참여 인원</span></div>
-            <div class="r-bars"><i style="width:82%"></i><i style="width:64%"></i><i style="width:46%"></i></div>
-          </div>
-        </div>
-        <p class="sticky-note">수정 요청 <b>N</b>번째…<br />그래도 PPT보단 재밌음</p>
-      </div>
+        <figcaption>이런 결과보고 웹페이지를 직접 만들어 봐요</figcaption>
+      </figure>
     </div>
 
     <div class="homework" id="homework">
