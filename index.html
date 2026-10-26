@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>코딩은 모르겠고, 보고서는 잘 만들고 싶고</title>
+  <meta name="description" content="월드비전 기업파트너십팀 내부 교육용 — Claude Code와 GPT로 기업 후원 결과보고를 웹페이지로 만드는 실전 튜토리얼" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ───────── 상단 내비게이션 ───────── -->
+<header class="topbar" id="top">
+  <a class="brand" href="#intro"><span class="brand-dot"></span>기파팀 바이브코딩 가이드</a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">메뉴</button>
+  <nav id="nav" class="nav" aria-label="단계 이동">
+    <a href="#homework">사전 숙제</a>
+    <a href="#flow">흐름</a>
+    <span class="nav-group">생각법</span>
+    <a href="#picture">그림 먼저</a>
+    <a href="#example">예시</a>
+    <a href="#ways">두 방식</a>
+    <a href="#mystyle">내 스타일</a>
+    <span class="nav-group">실습</span>
+    <a href="#step1">1 설치</a>
+    <a href="#step2">2 재료</a>
+    <a href="#step3">3 추구미</a>
+    <a href="#step4">4 레시피</a>
+    <a href="#step5">5 실행</a>
+    <a href="#step6">6 간 맞추기</a>
+    <a href="#step7">7 검수</a>
+    <a href="#making">제작기</a>
+  </nav>
+  <div class="read-progress" aria-hidden="true"><div id="read-progress"></div></div>
+</header>
+
+<main>
+
+<!-- ───────── SECTION 1. 인트로 ───────── -->
+<section class="hero" id="intro">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">기업파트너십팀 내부용 · 실무자의 AI 활용기</p>
+        <h1 class="hero-title">
+          <span class="ht-dunno">코딩은 모르겠고,</span>
+          <span class="ht-want">보고서는<br /><em>잘</em> 만들고 싶고</span>
+        </h1>
+        <p class="hero-subtitle">바이브코딩으로 기업 결과보고서 만들기</p>
+        <p class="hero-intro">PPT만으로는 뭔가 아쉽고,<br />개발자에게 부탁하기 전에 일단 내가 해보고 싶었습니다.</p>
+        <p class="hero-intro">GPT에게 설명하고, Claude Code에게 시키고,<br /><b>마음에 안 들면 다시 시키기.</b></p>
+        <p class="hero-intro">그렇게 기업 결과보고서 웹페이지를 만들었습니다.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#flow">자, 일단 AI한테 시켜봅시다 ↗</a>
+          <a class="btn btn-ghost" href="#step3">오늘의 실습</a>
+          <a class="btn btn-ghost" href="#making">제작기</a>
+        </div>
+        <p class="hero-credit">항빈님이 알려주신 꿀팁에 더해, 제 꿀팁을 이어 붙였습니다.</p>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="term">
+          <div class="win-bar"><i></i><i></i><i></i><span>claude — 배민2026_결과보고</span></div>
+          <div class="term-body">
+            <p><span class="t-prompt">&gt;</span> 결과보고 웹페이지로 만들어줘. 기업 담당자가 보기 좋게.</p>
+            <p class="t-dim">· 원본 자료 확인 → 구성안 → 페이지 작성</p>
+            <p><span class="t-prompt">&gt;</span> 음… 좀 더 깔끔하게. 근데 따뜻하게.</p>
+            <p><span class="t-prompt">&gt;</span> 아까 그 색 말고, 그 전 색.</p>
+            <p><span class="t-prompt">&gt;</span> 다시. 이번엔 진짜 마지막.<span class="t-cursor"></span></p>
+          </div>
+        </div>
+        <div class="report">
+          <div class="win-bar light"><i></i><i></i><i></i><span>output/index.html</span></div>
+          <div class="report-body">
+            <p class="r-kicker">2026 결과보고 · 예시 화면</p>
+            <p class="r-title">함께 만든 한 해</p>
+            <div class="r-kpis"><span><b>○○</b>참여 학교</span><span><b>○○</b>지원 건수</span><span><b>○○</b>참여 인원</span></div>
+            <div class="r-bars"><i style="width:82%"></i><i style="width:64%"></i><i style="width:46%"></i></div>
+          </div>
+        </div>
+        <p class="sticky-note">수정 요청 <b>N</b>번째…<br />그래도 PPT보단 재밌음</p>
+      </div>
+    </div>
+
+    <div class="homework" id="homework">
+      <div class="hw-head">
+        <p class="hw-badge">📌 사전 숙제</p>
+        <h2>세션 들어오기 전에 꼭 완료해주십쇼~</h2>
+        <p>설치랑 가입은 은근 시간이 걸려요. 미리 해두시면 당일엔 바로 요리만 하면 됩니다!</p>
+      </div>
+      <ul class="checklist hw-list" data-checklist="hw">
+        <li><label><input type="checkbox" /><span><b>Claude Code 설치하고 <code>claude --version</code> 확인하기</b><br/><span class="muted tiny">방법은 <a href="#step1">STEP 1</a>에 있어요. 회사 PC에서 설치가 막히면 미리 IT 담당자에게 문의해 주세요. Claude Code는 유료 계정(Pro·Max·Team·Enterprise 등)이 필요해요.</span></span></label></li>
+        <li><label><input type="checkbox" /><span><b>GitHub 가입하기</b> — <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a><br/><span class="muted tiny">완성한 결과보고를 링크로 공유할 때 쓰여요. 가입은 무료이고, 이메일 인증까지 마쳐 두세요. 가입만 해두면 돼요. 무언가 올리는 건 세션에서 같이 해요.</span></span></label></li>
+      </ul>
+      <p class="hw-foot"><span class="counter" data-count-for="hw">0 / 2</span> 체크 상태는 이 브라우저에만 저장돼요.</p>
+    </div>
+
+    <div class="promise">
+      <p class="promise-main">코딩은 몰라도 괜찮아요. 처음부터 완벽하게 알 필요도 없고요.</p>
+      <ol class="promise-steps">
+        <li><b>상상하고</b><span>만들고 싶은 결과물을 먼저 그려보고</span></li>
+        <li><b>설명하고</b><span>AI에게 내 말로 설명하고</span></li>
+        <li><b>고치고</b><span>결과물을 보면서 조금씩 수정하기</span></li>
+      </ol>
+      <p class="promise-foot">단, AI가 다 해주진 않아요. <strong>방향을 잡고 “이거 맞아?”를 판단하는 건</strong> 결국 사람 몫입니다. 숫자가 맞는지는 원본 자료가 알고 있고요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 요리 비유 ───────── -->
+<section class="kitchen" aria-labelledby="kitchen-title">
+  <div class="wrap">
+    <h2 id="kitchen-title" class="section-title small">오늘의 비유: 결과보고는 요리다 🍳</h2>
+    <ol class="kitchen-grid">
+      <li><span class="k-icon">🗄️</span><b>OneDrive</b><span>재료를 모아두는 창고</span></li>
+      <li><span class="k-icon">🥕</span><b>원본 자료·사진·데이터</b><span>요리 재료</span></li>
+      <li><span class="k-icon">📝</span><b>GPT</b><span>원하는 요리를 구체적인 레시피로 써주는 기획 파트너</span></li>
+      <li><span class="k-icon">👩‍🍳</span><b>Claude Code</b><span>레시피대로 실제 요리(파일)를 만드는 작업자</span></li>
+      <li><span class="k-icon">🥄</span><b>마이크로 수정</b><span>맛을 보며 간을 맞추는 과정</span></li>
+      <li><span class="k-icon">🍱</span><b>완성 웹페이지</b><span>기업에 전달하는 결과보고</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ───────── SECTION 2. 전체 작업 흐름 ───────── -->
+<section class="section" id="flow">
+  <div class="wrap">
+    <p class="kicker">한눈에 보기</p>
+    <h2 class="section-title">전체 작업 흐름</h2>
+    <p class="lead">카드를 누르면 해당 설명으로 이동해요. 순서대로 따라가면 내 사업의 결과보고 초안이 생깁니다.</p>
+
+    <ol class="flow">
+      <li class="flow-zero"><a href="#picture"><span class="num">0</span><b>그림 먼저 그리기</b><span>누가 보고, 뭘 느끼게 할지</span></a></li>
+      <li><a href="#step1"><span class="num">1</span><b>Claude Code 설치</b><span>작업자를 부엌에 모셔오기</span></a></li>
+      <li><a href="#step2"><span class="num">2</span><b>OneDrive·작업 폴더 준비</b><span>창고와 조리대 정리</span></a></li>
+      <li><a href="#ingredients"><span class="num">3</span><b>원본 자료와 사진 모으기</b><span>재료 손질</span></a></li>
+      <li><a href="#step3"><span class="num">4</span><b>GPT에게 프롬프트 요청</b><span>추구미 고르고 레시피 받기</span></a></li>
+      <li><a href="#step5"><span class="num">5</span><b>Claude Code로 웹페이지 제작</b><span>레시피대로 요리</span></a></li>
+      <li><a href="#step6"><span class="num">6</span><b>마이크로 수정·사실 확인</b><span>간 맞추기</span></a></li>
+      <li><a href="#step7"><span class="num">7</span><b>공유 및 PDF 저장</b><span>예쁘게 담아 전달</span></a></li>
+    </ol>
+
+    <div class="roles">
+      <div class="role role-gpt">
+        <p class="role-tag">GPT (ChatGPT)</p>
+        <h3>레시피를 쓰는 기획 파트너</h3>
+        <ul>
+          <li>내가 일상 말투로 설명한 요구를 <b>구체적인 작업 지시서(프롬프트)</b>로 정리</li>
+          <li>페이지 구성·디자인·검수 항목을 빠짐없이 챙겨줌</li>
+          <li><b>내 컴퓨터의 파일을 만들거나 고치지 않아요</b></li>
+        </ul>
+      </div>
+      <div class="role-arrow" aria-hidden="true">→<span>프롬프트를<br/>복사해서 전달</span></div>
+      <div class="role role-claude">
+        <p class="role-tag">Claude Code</p>
+        <h3>레시피대로 만드는 작업자</h3>
+        <ul>
+          <li>내 작업 폴더의 자료를 <b>직접 읽고</b>, 웹페이지 파일을 <b>생성·수정</b></li>
+          <li>실행해 보고 오류를 고치며 결과를 보고</li>
+          <li>내가 허락한 폴더 안에서, 내가 지시한 범위만 작업</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">GPT가 웹페이지를 자동으로 만들어주는 게 아니에요. <b>GPT는 “무엇을 어떻게 만들지”를 글로 정리</b>하고, <b>Claude Code가 그 글을 보고 실제 파일을 만듭니다.</b></p>
+  </div>
+</section>
+
+<!-- ───────── 선영식 방법론: 그림 먼저, 퍼즐 맞추기 ───────── -->
+<section class="section" id="picture">
+  <div class="wrap">
+    <p class="kicker">PART 1 · 생각법</p>
+    <h2 class="section-title">그림 먼저 그리고, 퍼즐을 맞춘다</h2>
+    <p class="lead">저는 일단 머릿속에 <b>그림부터</b> 그려요. 그리고 그 그림을 완성하려면 어떤 조각이 필요한지 하나씩 찾아가는 편이에요. 이름하여 <b>선영식 바이브코딩</b>입니다.</p>
+
+    <div class="scene">
+      <p class="scene-label">🖼️ 제가 그리는 최종 장면</p>
+      <p class="scene-quote">기업 담당자가 결과보고를 넘기다가<br/><b>“와, 월비 진짜 디테일하게 일했네. 우리가 후원한 사업을 이렇게 구체적으로 관리하고 있었구나!”</b></p>
+      <p class="scene-foot">이 반응을 얻으려면, 결과와 사진을 쭉 늘어놓는 것만으로는 조금 부족하겠죠. 결과보고가 <b>예뻐 보이는 것</b>과 <b>정말 일을 잘했다는 게 전달되는 것</b>은 조금 다른 이야기니까요.</p>
+    </div>
+
+    <div class="reverse">
+      <p class="reverse-title">그래서 거꾸로 생각해봐요. “그러려면…”</p>
+      <ul class="reverse-list">
+        <li>사업을 <b>어떤 순서로</b> 기획하고 실행했는지 보여줘야겠네</li>
+        <li>단계마다 <b>누가 무엇을</b> 했는지 드러나면 더 구체적이겠네</li>
+        <li>진행하면서 <b>무엇을 확인하고 관리했는지</b>도 보여주면 좋겠네</li>
+        <li>주요 일정은 <b>타임라인</b>으로 정리하면 한눈에 들어오겠네</li>
+        <li>결과만이 아니라 <b>결과에 이르는 과정</b>도 보여줘야겠네</li>
+        <li>성과는 <b>수치와 현장 사례</b>를 같이 보여주면 더 설득력 있겠네</li>
+      </ul>
+    </div>
+
+    <h3 class="sub-title">그림 → 퍼즐, 5단계</h3>
+    <ol class="five">
+      <li><span class="five-num">1</span><b>최종 그림 상상하기</b><p>보는 사람이 어떤 생각과 감정을 가졌으면 좋겠나요? 한 문장으로 적어봐요.</p></li>
+      <li><span class="five-num">2</span><b>필요한 장면 찾기</b><p>그 인상을 만들려면 어떤 정보와 장면을 꼭 보여줘야 할까요?</p></li>
+      <li><span class="five-num">3</span><b>퍼즐 조각 모으기</b><p>장면마다 필요한 원본 자료·사진·데이터·진행 기록을 OneDrive에서 찾아요.</p></li>
+      <li><span class="five-num">4</span><b>화면으로 설계하기</b><p>조각마다 챕터·타임라인·지도·사진·성과 카드 중 어울리는 옷을 입혀요.</p></li>
+      <li><span class="five-num">5</span><b>맞춰보고 다듬기</b><p>결과물을 보고 빠진 조각은 더하고, 그림에 안 맞는 건 덜어내요.</p></li>
+    </ol>
+    <p class="note">처음부터 퍼즐을 전부 맞출 필요는 없어요. <b>큰 그림만 먼저 그리고, 빈칸은 자료를 찾아가면서 채우면</b> 됩니다.</p>
+  </div>
+</section>
+
+<!-- ───────── 예시로 이해하기 ───────── -->
+<section class="section alt" id="example">
+  <div class="wrap">
+    <p class="kicker">PART 1 · 예시로 이해하기</p>
+    <h2 class="section-title">배민 2026 도시락 지원사업에 적용해보면</h2>
+    <p class="lead"><span class="badge-ex">교육용 가상 예시</span> 화면 구성을 설명하려고 만든 가상 사례예요. 실제 배민 사업의 사실이나 실적이 아니에요. 진짜 결과보고에서는 <b>원본 자료로 확인된 정보만</b> 씁니다.</p>
+
+    <div class="scene small">
+      <p class="scene-label">🖼️ 처음 떠올린 그림</p>
+      <p class="scene-quote">“기업 담당자가 결과보고를 보고 <b>‘우리가 후원한 사업이 이렇게 체계적으로 진행됐구나!’</b>라고 느꼈으면 좋겠어.”</p>
+    </div>
+
+    <p class="puzzle-intro">이 그림을 다섯 조각으로 나눠볼게요 ↓</p>
+    <div class="puzzles">
+      <article class="puzzle">
+        <p class="pz-tag">🧩 퍼즐 1</p>
+        <h3>사업을 왜 시작했나요?</h3>
+        <ul><li>사업의 배경과 목적</li><li>기업 후원과 사업 목표의 연결</li><li>해결하고자 했던 문제</li></ul>
+        <p class="pz-screen">화면으로는 → 프롤로그 + 핵심 문장 한 줄</p>
+      </article>
+      <article class="puzzle">
+        <p class="pz-tag">🧩 퍼즐 2</p>
+        <h3>어떻게 진행했나요?</h3>
+        <ul><li>기획부터 실행까지의 단계</li><li>단계별 주요 활동</li><li>일정과 담당 주체</li><li>진행 중 확인·관리 절차</li></ul>
+        <p class="pz-screen">화면으로는 → 타임라인 / 프로세스 다이어그램</p>
+      </article>
+      <article class="puzzle">
+        <p class="pz-tag">🧩 퍼즐 3</p>
+        <h3>어디에서 진행했나요?</h3>
+        <ul><li>참여 학교의 위치</li><li>학교별 활동 내용</li><li>학교별 지원 현황</li></ul>
+        <p class="pz-screen">화면으로는 → 지도 + 학교 클릭 시 정보 카드</p>
+      </article>
+      <article class="puzzle">
+        <p class="pz-tag">🧩 퍼즐 4</p>
+        <h3>어떤 결과가 있었나요?</h3>
+        <ul><li>지원 규모와 주요 성과</li><li>정량 데이터</li><li>현장 사례와 사진</li><li>사업으로 확인한 변화</li></ul>
+        <p class="pz-screen">화면으로는 → 핵심 수치 카드 + 사진 사례</p>
+      </article>
+      <article class="puzzle">
+        <p class="pz-tag">🧩 퍼즐 5</p>
+        <h3>그래서 무엇이 달라졌나요?</h3>
+        <ul><li>사업의 의미</li><li>기업 후원과 연결되는 성과</li><li>다음 사업에 참고할 시사점</li></ul>
+        <p class="pz-screen">화면으로는 → 요약 카드 + 감사 인사</p>
+      </article>
+    </div>
+
+    <div class="map-demo">
+      <div class="map-demo-head">
+        <h3 class="sub-title">퍼즐 3 화면 설계 예시: 지도는 이렇게</h3>
+        <p class="tiny muted">진짜 지도가 아니라 <b>설계 예시</b>예요. 점을 눌러보세요. 학교명·수치는 모두 가상입니다.</p>
+      </div>
+      <div class="map-demo-body">
+        <div class="map-canvas" role="group" aria-label="가상 지도 설계 예시">
+          <button class="pin" style="left:22%;top:30%" data-school="0" aria-label="가상 학교 A">A</button>
+          <button class="pin" style="left:58%;top:22%" data-school="1" aria-label="가상 학교 B">B</button>
+          <button class="pin" style="left:44%;top:62%" data-school="2" aria-label="가상 학교 C">C</button>
+          <button class="pin" style="left:76%;top:58%" data-school="3" aria-label="가상 학교 D">D</button>
+          <span class="map-note">지도 영역 (실제 구현 시 Leaflet 같은 지도 라이브러리 사용)</span>
+        </div>
+        <div class="map-side">
+          <div class="school-card" id="school-card" aria-live="polite">
+            <p class="muted">← 학교 점을 눌러보세요</p>
+          </div>
+          <div class="no-loc">
+            <b>📍 위치 확인 필요 (지도에 표시 안 함)</b>
+            <p>가상 학교 E: 원본 자료에 주소가 없어서 <b>임의로 좌표를 만들지 않고</b> 목록으로만 보여줘요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-msg">
+      <p>그냥 “예쁜 홈페이지 만들어줘”가 아니에요. <b>내가 보여주고 싶은 그림을 먼저 정하고</b>, 그 그림에 어떤 정보가 필요한지 생각하는 거예요.</p>
+      <p>디자인은 그다음! <b>무엇을 보여줄지</b> 정해지면 <b>어떻게 보여줄지</b>도 훨씬 쉬워져요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 두 가지 방식 ───────── -->
+<section class="section" id="ways">
+  <div class="wrap">
+    <p class="kicker">PART 1 · 두 가지 방식</p>
+    <h2 class="section-title">그림 먼저 vs 빠른 초안, 둘 다 정답입니다</h2>
+    <p class="lead">저는 그림부터 그리는 편이지만, 일단 만들어보고 보면서 키워가는 방식도 충분히 좋아요. 일의 성격이나 내 성향에 따라 편한 쪽을 고르면 됩니다.</p>
+
+    <div class="ways">
+      <article class="way">
+        <p class="way-tag">방법 A · 선영식</p>
+        <h3>“저는 일단 머릿속에 그림부터 그려요!”</h3>
+        <p>기업 담당자가 결과보고를 보고 어떤 인상을 받았으면 좋겠는지 먼저 생각해요. 그다음 그 인상을 만들려면 어떤 정보와 장면이 필요한지 역으로 찾아갑니다.</p>
+        <p class="way-flow"><span>최종 그림 상상</span><span>필요한 정보 찾기</span><span>챕터 구성</span><span>프롬프트 작성</span><span>구현·수정</span></p>
+        <p class="way-sub">이럴 때 잘 맞아요</p>
+        <ul>
+          <li>결과보고의 목적과 독자가 명확할 때</li>
+          <li>보여줘야 할 핵심 성과와 메시지가 분명할 때</li>
+          <li>프로세스·데이터·사례 등 구성요소가 많을 때</li>
+          <li>기업에 전달할 결과물의 완성도와 설득력이 중요할 때</li>
+        </ul>
+        <p class="way-sum">완성된 그림을 먼저 상상하고, 그 그림에 필요한 퍼즐을 맞춘다!</p>
+      </article>
+      <article class="way">
+        <p class="way-tag">방법 B · 빠른 초안형</p>
+        <h3>“일단 만들어보면 생각보다 답이 보일 수도!”</h3>
+        <p>처음부터 모든 구성을 정하려고 애쓰기보다, 일단 초안을 만들어보고 실제 화면을 보면서 더하고 빼는 방식이에요.</p>
+        <p class="way-flow"><span>간단한 아이디어</span><span>초안 만들기</span><span>화면 확인</span><span>개선점 찾기</span><span>반복 수정</span></p>
+        <p class="way-sub">이럴 때 잘 맞아요</p>
+        <ul>
+          <li>무엇을 만들지 아직 막연할 때</li>
+          <li>아이디어를 빠르게 눈으로 확인하고 싶을 때</li>
+          <li>정답이 없어 여러 디자인을 실험해보고 싶을 때</li>
+          <li>직접 만들어보는 과정에서 영감을 얻는 편일 때</li>
+        </ul>
+        <p class="way-sum">일단 만들어보고, 눈에 보이는 결과물을 보면서 방향을 찾아간다!</p>
+      </article>
+    </div>
+    <p class="ways-end">저는 그림부터 그리는 편이지만, 무조건 제 방법을 따라 하실 필요는 없어요. 항빈님의 <a href="https://wvk-claude-guide.vercel.app/" target="_blank" rel="noopener">비개발자의 웹페이지 제작기</a> 꿀팁도, 일단 만들어보는 방식도 모두 좋습니다. <b>본인에게 편한 방법으로 시작해보세요!</b></p>
+
+    <div class="ref-box">
+      <p class="ref-title">📎 함께 보면 좋은 가이드</p>
+      <p>위에 링크한 <a href="https://wvk-claude-guide.vercel.app/" target="_blank" rel="noopener">비개발자의 웹페이지 제작기</a>에 이미 꿀팁이 가득해요. 자료는 채팅창 대신 폴더에 넣기, 바로 만들지 말고 구성안부터 받기, “없으면 없다고 말해”까지 못박기, 진짜 지도 넣는 법, 모바일 확인, 브랜드 파일, 개인정보·대외 공개 주의, 링크로 게시하기까지요. 이 가이드에서는 그 내용을 반복하지 않고, 그 위에 <b>“무엇을 보여줄지 먼저 그리는 법”</b>을 더했어요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 여러분은 어떤 스타일인가요? ───────── -->
+<section class="section alt" id="mystyle">
+  <div class="wrap">
+    <p class="kicker">PART 1 · 나에게 맞는 방식 고르기</p>
+    <h2 class="section-title">여러분은 어떤 스타일인가요?</h2>
+    <p class="lead">고르는 방식에 따라 아래 작업 순서와 실습 안내가 바뀌어요. 고른 방식은 <a href="#step4">STEP 4의 GPT 프롬프트</a>에도 반영돼요.</p>
+
+    <div class="approach-grid" role="radiogroup" aria-label="나의 작업 스타일">
+      <label class="approach-card"><input type="radio" name="approach" value="A" checked />
+        <span class="ap-letter">A</span><b>그림부터 그리는 편</b><span>최종 결과물을 먼저 상상하고 구성요소를 정한다</span>
+      </label>
+      <label class="approach-card"><input type="radio" name="approach" value="B" />
+        <span class="ap-letter">B</span><b>일단 만들어보는 편</b><span>초안을 보고 수정하면서 방향을 정한다</span>
+      </label>
+      <label class="approach-card"><input type="radio" name="approach" value="C" />
+        <span class="ap-letter">C</span><b>둘 다 활용하는 편</b><span>중요한 건 설계부터, 가벼운 건 일단 만들어본다</span>
+      </label>
+    </div>
+
+    <!-- A. 그림부터: 워크시트 -->
+    <div class="ap-panel" data-approach-panel="A">
+      <p class="ap-order"><b>추천 순서</b> <span>최종 그림 상상</span><span>필요한 정보 찾기</span><span>챕터 구성</span><span>GPT로 프롬프트</span><span>Claude Code로 구현·수정</span></p>
+      <div class="ws-head">
+        <h3 class="sub-title">결과물 설계 워크시트</h3>
+        <div class="ws-actions">
+          <button type="button" class="btn-link" id="ws-example">배민 예시로 채워보기</button>
+          <button type="button" class="btn-link" id="ws-clear">모두 지우기</button>
+        </div>
+      </div>
+      <p class="tiny muted">전부 답하지 않아도 돼요. 쓴 만큼만 설계안이 채워지고, 빈칸은 “추가 확인 필요”로 표시돼요. 입력 내용은 이 브라우저에만 저장돼요.</p>
+      <div class="worksheet">
+        <label><span class="ws-q">1. 이 결과물을 누가 보나요?</span>
+          <textarea id="ws-1" rows="2" placeholder="예: 후원 기업 CSR 담당자, 임원"></textarea></label>
+        <label><span class="ws-q">2. 결과물을 본 사람이 어떤 생각을 했으면 좋겠나요?</span>
+          <textarea id="ws-2" rows="2" placeholder="예: ‘우리가 후원한 사업이 이렇게 체계적으로 진행됐구나!’"></textarea></label>
+        <label><span class="ws-q">3. 그 생각을 만들려면 어떤 내용을 꼭 보여줘야 하나요? <em>한 줄에 하나씩 → 챕터가 돼요</em></span>
+          <textarea id="ws-3" rows="4" placeholder="예: 사업을 왜 시작했는지&#10;기획부터 실행까지의 과정&#10;학교별 지원 현황"></textarea></label>
+        <label><span class="ws-q">4. 그 내용을 뒷받침할 자료는 어디에 있나요? <em>한 줄에 하나씩</em></span>
+          <textarea id="ws-4" rows="3" placeholder="예: input/business_plan/ 사업계획서&#10;input/data/ 학교별 실적 엑셀"></textarea></label>
+        <label><span class="ws-q">5. 각 내용은 어떤 방식으로 보여주면 이해하기 쉬울까요? <em>3번과 같은 순서로 한 줄씩</em></span>
+          <textarea id="ws-5" rows="3" placeholder="예: 짧은 배경 설명&#10;타임라인&#10;지도 + 학교 클릭 시 정보 카드"></textarea></label>
+        <label><span class="ws-q">6. 최종적으로 어떤 화면과 분위기를 원하나요?</span>
+          <textarea id="ws-6" rows="2" placeholder="예: 월드비전 오렌지 포인트, 깔끔하지만 따뜻하게, 챕터별 페이지"></textarea></label>
+      </div>
+
+      <div class="design-plan">
+        <div class="dp-head">
+          <h3 class="sub-title">📐 나의 결과물 설계안</h3>
+          <span class="tiny muted">입력하는 대로 바로 정리돼요</span>
+        </div>
+        <dl class="dp-list" id="design-plan"></dl>
+      </div>
+
+      <div class="generator">
+        <div class="gen-head">
+          <div>
+            <p class="kicker">설계안 → GPT 프롬프트</p>
+            <h3>GPT에 붙여넣을 기획형 프롬프트</h3>
+          </div>
+          <button class="btn btn-primary" id="copy-plan-prompt" type="button">프롬프트 복사</button>
+        </div>
+        <div class="copy-guide" id="plan-copy-guide" hidden>✅ 복사했어요! GPT에 붙여넣고, Claude Code에 전달할 실행용 프롬프트로 바꿔달라고 해보세요.</div>
+        <pre class="prompt-out" id="plan-prompt"></pre>
+      </div>
+    </div>
+
+    <!-- B. 일단 만들기 -->
+    <div class="ap-panel" data-approach-panel="B" hidden>
+      <p class="ap-order"><b>추천 순서</b> <span>간단한 아이디어</span><span>초안 만들기</span><span>화면 확인</span><span>개선점 찾기</span><span>반복 수정</span></p>
+      <p>머릿속이 아직 흐릿해도 괜찮아요. 일단 초안을 뽑고, 화면을 보면서 “이건 좋다 / 이건 별로다”를 말하면 방향이 잡혀요. 대신 <b>숫자와 사실은 처음부터 원본에서만</b> 가져오게 못박아 두세요.</p>
+      <div class="card-copy">
+        <p class="cc-label">① 초안 만들기 프롬프트 (Claude Code에 바로)</p>
+        <p class="cc-text" id="b-draft">input 폴더의 자료를 바탕으로 결과보고 웹페이지 초안을 빠르게 하나 만들어줘. 완벽하지 않아도 괜찮으니 전체 흐름을 한눈에 볼 수 있게 해줘.
+숫자·일정·기관명은 원본 자료에 있는 것만 쓰고, 없는 내용은 지어내지 말고 [확인 필요]로 비워둬.
+input 폴더 원본은 수정하지 말고 결과물은 output 폴더에만 만들어줘. 다 만들면 어떤 파일을 열면 되는지 알려줘.</p>
+        <button class="copy-btn" data-copy-target="b-draft">복사</button>
+      </div>
+      <div class="card-copy">
+        <p class="cc-label">② 화면 보고 수정하기 프롬프트</p>
+        <p class="cc-text" id="b-revise">초안 잘 봤어. [마음에 드는 부분]은 그대로 유지해줘.
+[아쉬운 부분]이 [왜 아쉬운지] 때문에 아쉬워. [원하는 모습]으로 바꿔줘.
+바꾼 다음에는 무엇을 바꿨는지 짧게 정리해줘.</p>
+        <button class="copy-btn" data-copy-target="b-revise">복사</button>
+      </div>
+      <p class="tiny muted">대괄호 [ ] 부분만 내 말로 바꿔 쓰면 돼요. 더 많은 수정 예시는 <a href="#step6">STEP 6</a>에 있어요.</p>
+    </div>
+
+    <!-- C. 둘 다 -->
+    <div class="ap-panel" data-approach-panel="C" hidden>
+      <p class="ap-order"><b>추천 순서</b> <span>상황 보고 방식 고르기</span><span>큰 그림 한 줄</span><span>초안 또는 설계</span><span>그림과 비교하며 수정</span></p>
+      <table class="situation">
+        <thead><tr><th>이런 상황이라면</th><th>추천 방식</th></tr></thead>
+        <tbody>
+          <tr><td>기업에 나가는 최종 결과보고, 수치·사례가 많은 보고</td><td><b>그림 먼저</b> (워크시트부터)</td></tr>
+          <tr><td>내부 공유용 페이지, 팀 업무 정리, 가벼운 소개 자료</td><td><b>일단 만들기</b></td></tr>
+          <tr><td>무엇을 만들지 감이 안 올 때</td><td><b>일단 만들기</b>로 초안을 보고 → 마음에 드는 방향이 보이면 그림 그리기</td></tr>
+          <tr><td>마감이 급할 때</td><td>큰 그림을 <b>딱 한 줄</b>만 적고 바로 초안 → 그 한 줄을 기준으로 수정</td></tr>
+          <tr><td>여러 디자인을 비교해보고 싶을 때</td><td><b>일단 만들기</b>로 2~3개 시안 → 그림에 가장 가까운 것 고르기</td></tr>
+        </tbody>
+      </table>
+      <div class="card-copy">
+        <p class="cc-label">섞어 쓰는 프롬프트 (큰 그림 한 줄 + 빠른 초안)</p>
+        <p class="cc-text" id="c-mix">이 결과보고를 본 기업 담당자가 [“이런 생각”]을 했으면 좋겠어. 이 한 문장을 기준으로, input 폴더 자료로 빠르게 초안을 하나 만들어줘.
+원본에 없는 숫자나 사실은 지어내지 말고 [확인 필요]로 남겨줘. 초안을 만든 뒤, 내 기준 문장에 비춰 부족해 보이는 부분이 있으면 같이 알려줘.</p>
+        <button class="copy-btn" data-copy-target="c-mix">복사</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ───────── SECTION 3. STEP 1 설치 ───────── -->
+<section class="section" id="step1">
+  <div class="wrap">
+    <p class="kicker">PART 2 · STEP 1</p>
+    <h2 class="section-title">Claude Code 설치하기</h2>
+    <p class="hw-inline">📌 <b>사전 숙제!</b> 1-1, 1-2(설치·확인)는 세션 들어오기 전에 꼭 해와 주세요. <a href="#homework">숙제 목록 보기</a></p>
+    <p class="lead">작업자를 부엌에 모셔오는 단계예요. 아래 명령어는 <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">Claude Code 공식 설치 문서</a>를 기준으로 정리했어요(2026년 10월 확인). 설치 방법은 바뀔 수 있으니, 막히면 공식 문서를 먼저 확인해 주세요.</p>
+
+    <div class="callout">
+      <b>시작 전 확인</b>
+      <ul>
+        <li>Claude Code는 <b>Pro·Max·Team·Enterprise 또는 Console 계정</b>이 필요해요. 무료 claude.ai 플랜에는 포함되지 않아요. 팀에서 쓰는 계정 정책을 먼저 확인해 주세요.</li>
+        <li>회사 PC는 보안 정책상 설치가 막힐 수 있어요. 이럴 땐 IT 담당자에게 문의하세요.</li>
+      </ul>
+    </div>
+
+    <div class="steps-v">
+      <div class="sv">
+        <span class="sv-num">1-1</span>
+        <div>
+          <h3>설치 방법 고르기</h3>
+          <p><b>터미널이 처음이라면</b> → 마우스로 쓰는 <a href="https://code.claude.com/docs/en/desktop-quickstart" target="_blank" rel="noopener">Claude 데스크톱 앱</a>의 Code 기능으로 시작해도 좋아요. 명령어 입력 없이 폴더를 고르고 대화할 수 있어요.</p>
+          <p><b>터미널로 설치한다면</b> → 내 컴퓨터에 맞는 탭을 골라 명령어를 붙여넣으세요.</p>
+
+          <div class="tabs" data-tabs>
+            <div class="tab-list" role="tablist">
+              <button role="tab" aria-selected="true" data-tab="ps">Windows PowerShell</button>
+              <button role="tab" aria-selected="false" data-tab="cmd">Windows CMD</button>
+              <button role="tab" aria-selected="false" data-tab="mac">macOS</button>
+            </div>
+            <div class="tab-panel" data-panel="ps">
+              <p class="tiny">시작 메뉴에서 “PowerShell” 검색 → 실행. 화면에 <code>PS C:\...&gt;</code>가 보이면 PowerShell이에요. 관리자 권한은 필요 없어요.</p>
+              <div class="code"><code>irm https://claude.ai/install.ps1 | iex</code><button class="copy-btn" data-copy="irm https://claude.ai/install.ps1 | iex">복사</button></div>
+            </div>
+            <div class="tab-panel" data-panel="cmd" hidden>
+              <p class="tiny">시작 메뉴에서 “cmd” 검색 → 실행. 앞에 <code>PS</code> 없이 <code>C:\...&gt;</code>만 보이면 CMD예요.</p>
+              <div class="code"><code>curl -fsSL https://claude.ai/install.cmd -o install.cmd &amp;&amp; install.cmd &amp;&amp; del install.cmd</code><button class="copy-btn" data-copy="curl -fsSL https://claude.ai/install.cmd -o install.cmd &amp;&amp; install.cmd &amp;&amp; del install.cmd">복사</button></div>
+            </div>
+            <div class="tab-panel" data-panel="mac" hidden>
+              <p class="tiny">Spotlight(⌘+Space)에서 “터미널” 검색 → 실행.</p>
+              <div class="code"><code>curl -fsSL https://claude.ai/install.sh | bash</code><button class="copy-btn" data-copy="curl -fsSL https://claude.ai/install.sh | bash">복사</button></div>
+            </div>
+          </div>
+          <p class="tiny muted">설치 중에는 진행 표시가 없어요. 끝날 때까지 잠시 기다려 주세요. Windows에서는 <a href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">Git for Windows</a> 설치가 권장(선택)이에요. 오류가 나면 <a href="https://code.claude.com/docs/en/troubleshoot-install" target="_blank" rel="noopener">설치 문제 해결 문서</a>를 참고하세요.</p>
+        </div>
+      </div>
+
+      <div class="sv">
+        <span class="sv-num">1-2</span>
+        <div>
+          <h3>설치 확인하기</h3>
+          <p><b>터미널 창을 새로 연 뒤</b> 아래를 입력하세요. 버전 번호가 나오면 성공이에요.</p>
+          <div class="code"><code>claude --version</code><button class="copy-btn" data-copy="claude --version">복사</button></div>
+          <p class="tiny muted">“claude를 찾을 수 없다”는 메시지가 나오면 터미널을 껐다 다시 켜 보고, 그래도 안 되면 공식 문제 해결 문서의 PATH 안내를 따라 주세요.</p>
+        </div>
+      </div>
+
+      <div class="sv">
+        <span class="sv-num">1-3</span>
+        <div>
+          <h3>작업용 폴더 준비하기</h3>
+          <p>결과보고 하나당 폴더 하나를 만들어요. 예: <code>배민2026_결과보고</code>. 폴더 이름은 짧고 알아보기 쉽게! (STEP 2에서 안을 채워요)</p>
+        </div>
+      </div>
+
+      <div class="sv">
+        <span class="sv-num">1-4</span>
+        <div>
+          <h3>그 폴더에서 Claude Code 열기</h3>
+          <p><b>방법 A. 터미널</b> — 작업 폴더로 이동한 다음 <code>claude</code>를 입력해요. 처음 실행하면 브라우저가 열리며 로그인을 안내해요.</p>
+          <div class="code"><code>cd "C:\Users\내이름\OneDrive\배민2026_결과보고"
+claude</code><button class="copy-btn" data-copy="cd &quot;C:\Users\내이름\OneDrive\배민2026_결과보고&quot;&#10;claude">복사</button></div>
+          <p class="tiny muted">💡 Windows 탐색기에서 폴더를 연 뒤 주소창에 <code>powershell</code>을 입력하고 Enter를 누르면 그 폴더에서 바로 PowerShell이 열려요. 경로는 내 PC에 맞게 바꿔 주세요.</p>
+          <p><b>방법 B. VS Code</b> — 파일과 화면을 같이 보고 싶다면 <a href="https://code.claude.com/docs/en/vs-code" target="_blank" rel="noopener">VS Code 확장 안내</a>를 따라 설치한 뒤, <b>파일 → 폴더 열기</b>로 작업 폴더를 열어 사용하세요.</p>
+          <p><b>방법 C. 데스크톱 앱</b> — 앱에서 작업 폴더를 선택해 시작해요.</p>
+        </div>
+      </div>
+
+      <div class="sv">
+        <span class="sv-num">1-5</span>
+        <div>
+          <h3>OneDrive 폴더 ↔ 작업 폴더 관계 이해하기</h3>
+          <div class="relation">
+            <div><b>OneDrive (창고)</b><span>팀 자료가 쌓여 있는 곳. 웹 OneDrive·Teams에만 있는 파일은 Claude Code가 볼 수 없어요.</span></div>
+            <div class="rel-arrow">PC에 동기화된 폴더만 →</div>
+            <div><b>작업 폴더 (조리대)</b><span>Claude Code를 실행한 폴더. Claude Code는 기본적으로 <b>이 폴더 안</b>에서 일해요.</span></div>
+          </div>
+          <p class="tiny muted">OneDrive 파일이 Claude Code에 “자동 연결”되는 게 아니에요. 내 PC의 파일 탐색기에서 실제 경로(예: <code>C:\Users\내이름\OneDrive\...</code>)로 열리는지, 파일이 “온라인 전용(구름 아이콘)” 상태는 아닌지 확인해 주세요. 필요하면 파일을 우클릭 → <b>“항상 이 장치에 유지”</b>를 선택하세요.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="links">📚 공식 문서: <a href="https://code.claude.com/docs/en/quickstart" target="_blank" rel="noopener">빠른 시작</a> · <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">설치</a> · <a href="https://code.claude.com/docs/en/terminal-guide" target="_blank" rel="noopener">터미널이 처음이라면</a> · <a href="https://code.claude.com/docs/en/desktop-quickstart" target="_blank" rel="noopener">데스크톱 앱</a></p>
+  </div>
+</section>
+
+<!-- ───────── SECTION 4. STEP 2 OneDrive ───────── -->
+<section class="section alt" id="step2">
+  <div class="wrap">
+    <p class="kicker">PART 2 · STEP 2</p>
+    <h2 class="section-title">정보의 바다, OneDrive 준비하기</h2>
+    <p class="lead big">“자, 이제 우리에게는 <b>재료</b>가 필요합니다. 요리를 하려면 재료가 있어야 하잖아요?”</p>
+    <p>OneDrive는 사업 자료를 모아두고 팀원들이 함께 쓰는 <b>창고</b>예요. 이번 실습에서는 <span class="badge-ex">교육용 가상 예시</span> <b>‘배민 2026 도시락 사업’</b>으로 연습해요. (실제 사업이 아닌, 연습을 위해 만든 가상 사례예요.)</p>
+
+    <div class="two-col" id="ingredients">
+      <div>
+        <h3 class="sub-title">재료 체크리스트 <span class="counter" data-count-for="ing">0 / 8</span></h3>
+        <ul class="checklist" data-checklist="ing">
+          <li><label><input type="checkbox" />사업계획서</label></li>
+          <li><label><input type="checkbox" />기존 결과보고서 또는 사업 결과 정리 자료</label></li>
+          <li><label><input type="checkbox" />사업 진행 과정과 일정</label></li>
+          <li><label><input type="checkbox" />사업 실적 및 정량 데이터 (엑셀 등)</label></li>
+          <li><label><input type="checkbox" />현장 사진 <span class="muted">(공개 동의 확인된 것)</span></label></li>
+          <li><label><input type="checkbox" />참여자 및 기관 관련 정보</label></li>
+          <li><label><input type="checkbox" />지도에 표시할 학교명과 위치 정보</label></li>
+          <li><label><input type="checkbox" />기존 디자인·브랜드 가이드</label></li>
+        </ul>
+        <p class="tiny muted">체크 상태는 이 브라우저에만 저장돼요.</p>
+      </div>
+      <div>
+        <h3 class="sub-title">폴더 구조 예시</h3>
+<pre class="tree">배민2026_결과보고/
+├─ input/            <span>← 재료 (원본은 복사본으로!)</span>
+│  ├─ business_plan/ <span>사업계획서</span>
+│  ├─ results/       <span>결과보고·실적 정리</span>
+│  ├─ photos/        <span>현장 사진</span>
+│  └─ data/          <span>엑셀·학교 위치 정보</span>
+├─ output/           <span>← 완성된 웹페이지</span>
+└─ README.md         <span>← 이 폴더 설명서</span></pre>
+        <p class="tiny">이 구조는 <b>예시</b>예요. 이미 쓰고 있는 OneDrive 폴더 구조가 있다면 그대로 두고, Claude Code에게 “자료는 ○○ 폴더에 있어”라고 경로만 정확히 알려줘도 돼요.</p>
+        <p class="tiny"><b>꿀팁</b> · 원본 파일은 건드리지 않도록 <b>복사본</b>을 input에 넣어 두세요. · 파일 이름에 날짜와 내용을 넣으면(예: <code>2026_실적집계_최종.xlsx</code>) AI도 사람도 헷갈리지 않아요.</p>
+      </div>
+    </div>
+
+    <div class="warn">
+      <h3>⚠️ 아동 보호·개인정보 주의</h3>
+      <ul>
+        <li>실제 <b>아동의 이름, 얼굴이 식별되는 사진, 학교·학급, 주소</b> 등 식별정보가 외부 공개 페이지에 나가지 않게 해 주세요.</li>
+        <li>사진은 <b>사용 동의</b>와 기관의 아동보호 정책을 확인한 것만 사용해요. 필요하면 뒷모습·손·단체 원경 사진을 쓰거나 모자이크해요.</li>
+        <li>사례(스토리)는 가명을 쓰고, 나이·지역 등 조합하면 특정될 수 있는 정보도 줄여요.</li>
+        <li>후원자 개인정보, 내부 예산 상세, 협약 조건 등 <b>대외비 자료는 input 폴더에 넣지 않는 것</b>이 가장 안전해요.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── SECTION 5. STEP 3 추구미 ───────── -->
+<section class="section" id="step3">
+  <div class="wrap">
+    <p class="kicker">PART 2 · STEP 3 · 오늘의 실습</p>
+    <h2 class="section-title">나의 결과보고 추구미 선택하기</h2>
+    <p class="lead">어떤 요리를 만들고 싶은지 골라보세요. 선택할 때마다 <a href="#step4">STEP 4의 GPT 프롬프트</a>가 바로 바뀌어요.</p>
+
+    <div class="fieldset">
+      <h3 class="sub-title">0. 내 사업 정보 <span class="muted tiny">(비워 두면 교육용 예시로 채워져요)</span></h3>
+      <div class="inputs">
+        <label>사업명<input type="text" id="in-project" placeholder="배민 2026 도시락 사업 (교육용 가상 예시)" /></label>
+        <label>후원 기업<input type="text" id="in-partner" placeholder="예: 배달의민족 (가상 예시)" /></label>
+        <label>사업 기간<input type="text" id="in-period" placeholder="예: 2026.03 ~ 2026.12" /></label>
+        <label>자료 폴더 경로<input type="text" id="in-folder" placeholder="예: C:\Users\내이름\OneDrive\배민2026_결과보고" /></label>
+      </div>
+    </div>
+
+    <div class="fieldset">
+      <h3 class="sub-title">1. 결과보고 스타일</h3>
+      <div class="style-grid" role="radiogroup" aria-label="결과보고 스타일">
+        <label class="style-card"><input type="radio" name="style" value="A" checked />
+          <span class="sc-letter">A</span><b>핵심만 간단히</b>
+          <ul><li>임원·기업 담당자가 빠르게 읽는 구성</li><li>핵심 성과와 주요 메시지 중심</li><li>짧고 명료한 문장</li></ul>
+        </label>
+        <label class="style-card"><input type="radio" name="style" value="B" />
+          <span class="sc-letter">B</span><b>사진 중심</b>
+          <ul><li>현장 사진과 활동 장면 중심</li><li>사진별 설명과 캡션</li><li>사업의 분위기와 현장감 전달</li></ul>
+        </label>
+        <label class="style-card"><input type="radio" name="style" value="C" />
+          <span class="sc-letter">C</span><b>프로세스 중심</b>
+          <ul><li>기획부터 실행까지의 흐름</li><li>일정, 주요 단계, 참여 주체</li><li>진행 과정과 의사결정의 맥락</li></ul>
+        </label>
+        <label class="style-card"><input type="radio" name="style" value="D" />
+          <span class="sc-letter">D</span><b>상세 분석형</b>
+          <ul><li>배경·목표·추진 과정·정량/정성 성과</li><li>주요 사례와 시사점</li><li>데이터와 근거를 충분히 제시</li></ul>
+        </label>
+      </div>
+    </div>
+
+    <div class="option-rows">
+      <div class="opt-row">
+        <h3 class="sub-title">2. 디자인 분위기</h3>
+        <div class="chips" role="radiogroup">
+          <label class="chip"><input type="radio" name="mood" value="corporate" />깔끔한 기업형</label>
+          <label class="chip"><input type="radio" name="mood" value="story" checked />따뜻한 스토리형</label>
+          <label class="chip"><input type="radio" name="mood" value="dashboard" />데이터 대시보드형</label>
+        </div>
+      </div>
+      <div class="opt-row">
+        <h3 class="sub-title">3. 결과물 구성</h3>
+        <div class="chips" role="radiogroup">
+          <label class="chip"><input type="radio" name="structure" value="single" />단일 페이지</label>
+          <label class="chip"><input type="radio" name="structure" value="chapters" checked />챕터별 웹페이지</label>
+        </div>
+      </div>
+      <div class="opt-row">
+        <h3 class="sub-title">4. 데이터 표현 <span class="muted tiny">(여러 개 선택)</span></h3>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="data" value="kpi" checked />핵심 수치</label>
+          <label class="chip"><input type="checkbox" name="data" value="chart" />그래프</label>
+          <label class="chip"><input type="checkbox" name="data" value="map" checked />지도</label>
+          <label class="chip"><input type="checkbox" name="data" value="timeline" />타임라인</label>
+        </div>
+      </div>
+      <div class="opt-row">
+        <h3 class="sub-title">5. 결과물 활용 <span class="muted tiny">(여러 개 선택)</span></h3>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="usage" value="web" checked />웹 링크 공유</label>
+          <label class="chip"><input type="checkbox" name="usage" value="pdf" checked />PDF 저장</label>
+          <label class="chip"><input type="checkbox" name="usage" value="archive" />내부 아카이빙</label>
+        </div>
+      </div>
+      <div class="opt-row">
+        <h3 class="sub-title">6. 더 하고 싶은 말 <span class="muted tiny">(선택)</span></h3>
+        <textarea id="in-extra" rows="2" placeholder="예: 기업 로고 색(민트)을 살짝 넣고 싶어 / 담당자 인터뷰 한 줄을 넣고 싶어"></textarea>
+      </div>
+    </div>
+
+    <div class="summary" aria-live="polite">
+      <span class="summary-label">지금 고른 추구미</span>
+      <div id="summary-chips" class="summary-chips"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── SECTION 6. STEP 4 GPT ───────── -->
+<section class="section alt" id="step4">
+  <div class="wrap">
+    <p class="kicker">PART 2 · STEP 4</p>
+    <h2 class="section-title">GPT에게 레시피 부탁하기</h2>
+    <p class="lead">GPT에게는 개발 용어 대신 <b>평소 업무 설명하듯</b> 말하면 돼요. 저는 실제로 이렇게 말해요. (날것 주의)</p>
+
+    <div class="chat">
+      <div class="bubble raw">
+        <span class="who">실제 제 말투 그대로 <em class="badge-ex">교육용 예시</em></span>
+        <p class="raw-text">배민 도시락 사업이 이번에 겁나 잘진행됨... 근데 홈페이지로 챕터별로 보면좋을거같아
+
+-메인 프롤로그에는 배민 2026 도시락 사업 소개 하고 1) 어떻게 진행됫나요 과정을 상세히  설명해주고  4) 결과는 지도를 표현해주고 지도안에 학교를 스프레드 식으로 표현하구 싶어... 자 한번 초안을 만드는 프롬포트 부탁해</p>
+      </div>
+      <p class="chat-mid">이 정도로도 충분해요! 조금 더 다듬으면 GPT가 더 정확한 레시피를 써줘요 ↓</p>
+      <div class="bubble user">
+        <span class="who">조금 다듬은 버전 <em class="badge-ex">교육용 예시</em></span>
+        <p>배민 도시락 사업이 이번에 정말 잘 진행됐어. 이 사업을 기업 담당자가 홈페이지에서 챕터별로 확인할 수 있으면 좋겠어.</p>
+        <p>메인 프롤로그에는 배민 2026 도시락 사업을 소개해줘.</p>
+        <ol>
+          <li>어떻게 진행됐나요? 사업의 기획부터 실행까지 과정을 상세하게 보여줘.</li>
+          <li>어떤 성과가 있었나요? 주요 실적과 결과를 보기 좋게 정리해줘.</li>
+          <li>현장에서는 어떤 변화가 있었나요? 사진과 사례를 통해 보여줘.</li>
+          <li>어디에서 진행됐나요? 지도에 사업 참여 학교를 표시하고, 각 학교를 클릭하면 관련 정보를 볼 수 있게 해줘.</li>
+        </ol>
+        <p>전체적으로 기업 담당자가 보기 편하고, 깔끔하면서도 따뜻한 결과보고 페이지를 만들고 싶어.</p>
+        <p>이 요구사항을 Claude Code에 바로 전달할 수 있도록 구체적이고 완성도 높은 프롬프트로 바꿔줘. 필요한 페이지 구성, 디자인 방향, 데이터 구조, 기능, 검수 사항까지 포함해줘.</p>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div>
+        <h3>GPT가 하는 일</h3>
+        <ul>
+          <li>내 설명을 <b>빠짐없는 작업 지시서</b>로 정리</li>
+          <li>페이지 구성·디자인·기능·검수 항목 제안</li>
+          <li>애매한 부분을 질문으로 되묻기</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Claude Code가 하는 일</h3>
+        <ul>
+          <li>지시서대로 <b>실제 파일 생성·수정</b></li>
+          <li>작업 폴더의 원본 자료 읽기</li>
+          <li>화면 실행·오류 점검</li>
+        </ul>
+      </div>
+      <div>
+        <h3>내가 하는 일</h3>
+        <ul>
+          <li>원하는 결과물을 <b>구체적으로 설명</b></li>
+          <li>원본 자료 준비와 <b>사실 확인</b></li>
+          <li>공개 범위와 개인정보 최종 판단</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub-title">프롬프트의 방향 바꾸기: 디자인 나열 말고, 그림을 설명하기</h3>
+    <div class="before-after">
+      <div class="ba before">
+        <p class="ba-tag">이전 · 단순한 요청</p>
+        <p class="ba-text">“배민 도시락 사업 결과보고 홈페이지를 만들어줘.”</p>
+        <p class="tiny muted">AI가 목적을 모르니, 예쁘지만 “그래서 뭘 말하려는 거지?” 싶은 결과가 나오기 쉬워요.</p>
+      </div>
+      <div class="ba after">
+        <p class="ba-tag">이후 · 기획형 프롬프트 <em class="badge-ex">교육용 예시</em></p>
+        <p class="ba-text" id="ba-prompt">배민 2026 도시락 지원사업의 결과보고를 제작하려고 해.
+<mark class="hl-goal">이 결과보고의 핵심 목적은 기업 담당자가 사업이 체계적으로 기획되고 실행되었으며, 진행 과정과 성과가 구체적으로 관리되었다는 점을 이해하도록 하는 거야.</mark>
+<mark class="hl-source">먼저 원본 자료를 검토해서 실제 확인 가능한 사업 배경, 진행 단계, 일정, 참여 기관, 지원 현황, 성과 데이터를 파악해줘.</mark>
+<mark class="hl-msg">그다음 사업의 기획부터 결과까지 이어지는 흐름을 구성하고, 각 단계에서 무엇을 했는지 구체적으로 보여줄 수 있도록 챕터를 설계해줘.</mark>
+<mark class="hl-screen">진행 과정은 타임라인 또는 프로세스 다이어그램으로, 학교별 지원 현황은 검증된 위치 정보를 바탕으로 지도와 데이터 카드로, 주요 성과는 핵심 수치와 현장 사례로 표현하고 싶어.
+단순히 화면을 예쁘게 만드는 것보다, 각 화면이 어떤 메시지를 전달하는지 먼저 설계해줘.</mark>
+<mark class="hl-source">자료가 부족한 부분은 임의로 채우지 말고 추가로 필요한 자료를 알려줘. 확인된 정보와 가상의 예시를 명확히 구분해줘.</mark>
+우선 자료를 검토하고 페이지 구성안을 제안한 뒤, 내가 방향을 확인하면 실제 웹페이지를 구현해줘.</p>
+        <button class="copy-btn" data-copy-target="ba-prompt">복사</button>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i class="hl-goal"></i>목적</span>
+      <span><i class="hl-msg"></i>전달할 메시지와 흐름</span>
+      <span><i class="hl-source"></i>근거 자료와 사실 확인</span>
+      <span><i class="hl-screen"></i>화면의 역할</span>
+    </div>
+    <p class="note">좋은 프롬프트는 원하는 디자인을 나열하는 게 아니라 <b>목적 · 전달할 메시지 · 그걸 뒷받침할 근거 · 각 화면의 역할</b>을 함께 설명하는 거예요.</p>
+
+    <div class="generator">
+      <div class="gen-head">
+        <div>
+          <p class="kicker">자동 생성</p>
+          <h3>내 추구미로 만든 GPT 요청 프롬프트</h3>
+          <p class="tiny muted"><a href="#mystyle">내 스타일</a>과 <a href="#step3">STEP 3</a>에서 고른 값이 반영돼요. 그림부터(A)를 골랐다면 워크시트 답변도 들어가요.</p>
+        </div>
+        <button class="btn btn-primary" id="copy-prompt" type="button">프롬프트 복사</button>
+      </div>
+      <div id="copy-guide" class="copy-guide" hidden>
+        ✅ 복사했어요! 이제 GPT에 프롬프트를 붙여넣고, Claude Code에 전달할 수 있는 실행용 프롬프트를 받아보세요.
+      </div>
+      <pre id="prompt-out" class="prompt-out" tabindex="0"></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── SECTION 7. STEP 5 Claude Code ───────── -->
+<section class="section" id="step5">
+  <div class="wrap">
+    <p class="kicker">PART 2 · STEP 5</p>
+    <h2 class="section-title">Claude Code에 실행시키기</h2>
+    <p class="lead">GPT가 써준 실행용 프롬프트를 Claude Code에 붙여넣을 차례예요. 이때 아래 한 문단을 <b>앞에 덧붙이면</b> 훨씬 안전해요.</p>
+
+    <div class="card-copy">
+      <p class="cc-label">Claude Code 실행 프롬프트 예시</p>
+      <p class="cc-text" id="run-prompt">이 프롬프트를 바탕으로 웹페이지를 만들어줘. 우선 원본 자료를 확인하고, 실제 자료에 있는 정보만 사용해. 자료가 부족한 부분은 임의로 채우지 말고 나에게 확인해줘.
+작업을 시작하기 전에 지금 작업 폴더 위치와 사용할 파일 목록을 먼저 보여줘. input 폴더의 원본 파일은 수정하거나 삭제하지 말고, 결과물은 output 폴더에만 만들어줘.
+
+(여기에 GPT가 만들어준 실행용 프롬프트를 붙여넣기)</p>
+      <button class="copy-btn" data-copy-target="run-prompt">복사</button>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3 class="sub-title">Claude Code가 보통 거치는 과정 <span class="badge-ex">교육용 예시</span></h3>
+        <ol class="process">
+          <li><b>프로젝트 폴더와 자료 확인</b> — 어떤 파일이 있는지 살펴봐요</li>
+          <li><b>기존 파일·폴더 구조 확인</b> — 이미 있는 결과물이 있는지 봐요</li>
+          <li><b>페이지 구성 설계</b> — 어떤 챕터를 만들지 계획해요</li>
+          <li><b>웹페이지 코드 작성</b> — output 폴더에 파일을 만들어요</li>
+          <li><b>실행 후 화면 점검</b> — 브라우저에서 열어 확인해요</li>
+          <li><b>오류·개선 사항 확인</b> — 부족한 자료나 문제를 알려줘요</li>
+        </ol>
+        <p class="tiny muted">위는 이해를 돕기 위해 정리한 흐름이에요. 실제 Claude Code의 답변 문장이나 순서는 상황마다 달라요.</p>
+      </div>
+      <div>
+        <h3 class="sub-title">실행 전 안전 점검 🔒</h3>
+        <ul class="checks">
+          <li><b>작업 디렉터리 확인</b> — Claude Code를 실행한 폴더가 이번 결과보고 폴더가 맞나요? (OneDrive 최상위 폴더에서 바로 실행하지 마세요)</li>
+          <li><b>파일 접근 범위</b> — 이번 작업에 필요한 자료만 폴더에 들어 있나요?</li>
+          <li><b>덮어쓰기·삭제 주의</b> — Claude Code가 파일 수정이나 명령 실행 허락을 물으면, 무엇을 바꾸는지 읽고 승인하세요. 모르겠으면 “이게 무슨 작업이야?”라고 물어봐도 돼요.</li>
+          <li><b>원본 백업</b> — 중요한 원본은 다른 곳에 복사본을 두세요.</li>
+          <li><b>결과 열어보기</b> — 완성되면 <code>output/index.html</code> 같은 파일을 더블클릭해 브라우저로 열어 봐요. 어떤 파일을 열면 되는지 모르면 Claude Code에게 물어보세요.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── SECTION 8. STEP 6 마이크로 수정 ───────── -->
+<section class="section alt" id="step6">
+  <div class="wrap">
+    <p class="kicker">PART 2 · STEP 6</p>
+    <h2 class="section-title">마이크로 수정의 기술</h2>
+    <p class="lead big">“처음부터 완벽한 결과물을 만들려고 하지 마세요. 초안을 확인하고, 마음에 들지 않는 부분을 하나씩 구체적으로 수정하면 됩니다.”</p>
+
+    <div class="micro-grid">
+      <article class="micro">
+        <p class="m-tag">01 · 디자인</p>
+        <p class="m-text" id="m1">전체적으로 조금 더 깔끔하게 바꿔줘. 월드비전 오렌지를 포인트 컬러로 사용하고, 여백을 넉넉하게 만들어줘.</p>
+        <button class="copy-btn" data-copy-target="m1">복사</button>
+      </article>
+      <article class="micro">
+        <p class="m-tag">02 · 문장</p>
+        <p class="m-text" id="m2">보고서 문체는 유지하되 문장을 더 간결하게 바꿔줘. 원본에 없는 성과를 추가하지 마.</p>
+        <button class="copy-btn" data-copy-target="m2">복사</button>
+      </article>
+      <article class="micro">
+        <p class="m-tag">03 · 사진</p>
+        <p class="m-text" id="m3">사진 크기를 키우고, 사진 아래에 활동 내용과 설명을 배치해줘. 실제 사진의 맥락을 확인하고 캡션을 작성해줘.</p>
+        <button class="copy-btn" data-copy-target="m3">복사</button>
+      </article>
+      <article class="micro">
+        <p class="m-tag">04 · 지도</p>
+        <p class="m-text" id="m4">지도에 참여 학교를 표시하고, 학교를 클릭하면 학교명과 해당 학교의 실적을 확인할 수 있게 해줘. 위치 정보가 없는 학교는 임의로 좌표를 만들지 마.</p>
+        <button class="copy-btn" data-copy-target="m4">복사</button>
+      </article>
+      <article class="micro">
+        <p class="m-tag">05 · 데이터</p>
+        <p class="m-text" id="m5">핵심 수치를 한눈에 볼 수 있게 카드로 만들어줘. 원본 데이터와 합계가 일치하는지 확인하고, 불일치가 있으면 알려줘.</p>
+        <button class="copy-btn" data-copy-target="m5">복사</button>
+      </article>
+      <article class="micro">
+        <p class="m-tag">06 · 레이아웃</p>
+        <p class="m-text" id="m6">메인 화면은 짧게 구성하고, 자세한 내용은 챕터별로 나눠줘.</p>
+        <button class="copy-btn" data-copy-target="m6">복사</button>
+      </article>
+      <article class="micro">
+        <p class="m-tag">07 · PDF</p>
+        <p class="m-text" id="m7">웹페이지를 PDF로 저장했을 때도 글자나 사진이 잘리지 않도록 인쇄용 스타일을 점검해줘.</p>
+        <button class="copy-btn" data-copy-target="m7">복사</button>
+      </article>
+      <article class="micro micro-tip">
+        <p class="m-tag">+ 나만의 수정</p>
+        <p class="m-text">현재 문제 + 원하는 결과 + 유지할 것<br/><span class="muted">예) “2챕터 그래프 글씨가 너무 작아. 모바일에서도 읽히게 키워줘. 색상과 순서는 지금처럼 유지해줘.”</span></p>
+      </article>
+    </div>
+
+    <div class="intent">
+      <h3 class="sub-title">마이크로 수정도 그림을 기준으로</h3>
+      <p>“예쁘게 바꿔줘” 대신, <b>처음 그린 그림과 지금 화면이 어디서 어긋났는지</b>부터 봐요. 무엇을 바꿀지와 함께 <b>왜 바꾸는지</b>를 말하면 AI도 훨씬 정확하게 고쳐줘요.</p>
+      <ol class="formula">
+        <li><b>원래 의도</b><span>처음 그린 그림</span></li>
+        <li><b>현재 문제</b><span>그림과 어긋난 곳</span></li>
+        <li><b>구체적인 수정 요청</b><span>유지할 것 + 바꿀 것</span></li>
+        <li><b>결과 확인</b><span>그림에 가까워졌나?</span></li>
+      </ol>
+
+      <div class="intent-example">
+        <p class="ie-row"><span class="ie-tag">원래 의도</span>사업이 정말 체계적으로 진행됐다는 인상을 주고 싶다.</p>
+        <p class="ie-row"><span class="ie-tag">현재 문제</span>지금은 결과 수치만 있고, 그 수치가 만들어지기까지 어떤 과정을 거쳤는지 보이지 않는다.</p>
+        <p class="ie-row"><span class="ie-tag">수정 요청</span><span id="ie-req">현재 핵심 성과 카드와 디자인은 유지해줘. 대신 사업의 기획부터 실행, 현장 확인, 결과 정리까지 이어지는 과정을 추가해줘. 각 단계에서 실제 자료로 확인되는 활동과 일정만 표시하고, 전체 흐름이 한눈에 들어오도록 타임라인으로 구성해줘.</span></p>
+        <p class="ie-row"><span class="ie-tag">결과 확인</span>타임라인을 보고 “아, 이렇게 관리했구나”가 느껴지는지, 일정이 원본과 맞는지 직접 확인!</p>
+        <button class="copy-btn" data-copy-target="ie-req">수정 요청 복사</button>
+      </div>
+
+      <div class="intent-builder">
+        <h4>내 수정 요청 만들기</h4>
+        <div class="ib-inputs">
+          <label>원래 의도 <input type="text" id="ib-1" placeholder="예: 현장의 따뜻한 분위기가 전해졌으면" /></label>
+          <label>현재 문제 <input type="text" id="ib-2" placeholder="예: 사진이 작고 설명이 없어 분위기가 안 느껴짐" /></label>
+          <label>유지할 것 <input type="text" id="ib-3" placeholder="예: 전체 색상과 챕터 순서" /></label>
+          <label>바꿀 것 <input type="text" id="ib-4" placeholder="예: 사진을 크게, 아래에 활동 설명 캡션" /></label>
+        </div>
+        <pre class="prompt-out small" id="ib-out"></pre>
+        <button class="copy-btn" data-copy-target="ib-out">수정 프롬프트 복사</button>
+      </div>
+    </div>
+
+    <div class="principles">
+      <h3 class="sub-title">마이크로 수정의 원칙</h3>
+      <ol>
+        <li><b>한 번에 한두 가지씩</b> 요청하기</li>
+        <li>원하는 결과와 <b>현재 문제</b>를 구체적으로 설명하기</li>
+        <li>마음에 드는 부분은 <b>유지하라고 명시</b>하기</li>
+        <li>실제 데이터와 사실관계는 <b>원본에 맞추기</b></li>
+        <li>수정 후 <b>화면을 직접 확인</b>하기</li>
+        <li>만족할 때까지 <b>반복</b>하기</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── SECTION 9. STEP 7 검수·공유 ───────── -->
+<section class="section" id="step7">
+  <div class="wrap">
+    <p class="kicker">PART 2 · STEP 7</p>
+    <h2 class="section-title">완성본 검수와 공유</h2>
+    <p class="lead">마지막 맛보기! 기업에 보내기 전에 하나씩 체크해 보세요.</p>
+
+    <div class="final-check">
+      <div class="fc-head">
+        <h3 class="sub-title">최종 점검 체크리스트</h3>
+        <div class="progress"><div class="progress-bar" id="final-bar"></div></div>
+        <span class="counter" data-count-for="final">0 / 9</span>
+        <button class="btn-link" type="button" id="reset-final">초기화</button>
+      </div>
+      <ul class="checklist big" data-checklist="final">
+        <li><label><input type="checkbox" />사업명과 기간이 정확한가?</label></li>
+        <li><label><input type="checkbox" />사업 실적과 합계가 원본과 일치하는가?</label></li>
+        <li><label><input type="checkbox" />사진과 캡션이 일치하는가?</label></li>
+        <li><label><input type="checkbox" />지도 위치와 학교 정보가 검증되었는가?</label></li>
+        <li><label><input type="checkbox" />아동과 참여자의 개인정보가 보호되는가?</label></li>
+        <li><label><input type="checkbox" />페이지의 링크와 버튼이 정상 작동하는가?</label></li>
+        <li><label><input type="checkbox" />모바일에서도 읽기 편한가?</label></li>
+        <li><label><input type="checkbox" />PDF 저장 시 글자와 사진이 잘리지 않는가?</label></li>
+        <li><label><input type="checkbox" />외부에 공개해도 되는 자료만 포함했는가?</label></li>
+      </ul>
+      <p id="final-done" class="final-done" hidden>🎉 모든 항목을 확인했어요. 이제 공유 방법을 골라보세요!</p>
+    </div>
+
+    <h3 class="sub-title">어떻게 전달할까?</h3>
+    <div class="share-grid">
+      <div class="share">
+        <p class="s-icon">🔗</p>
+        <h4>웹페이지 링크 공유</h4>
+        <p>링크 하나로 전달. 사진·지도·클릭 기능이 그대로 살아 있어요.</p>
+        <p class="tiny muted">웹에 올리는 호스팅이 필요해요. 링크를 아는 사람은 누구나 볼 수 있을 수 있어요.</p>
+      </div>
+      <div class="share">
+        <p class="s-icon">📄</p>
+        <h4>PDF 저장</h4>
+        <p>브라우저에서 <code>Ctrl+P</code>(Mac은 <code>⌘+P</code>) → 대상 “PDF로 저장”. 메일 첨부·결재에 편해요.</p>
+        <p class="tiny muted">지도 클릭 같은 기능은 빠져요. 저장 후 잘림이 없는지 꼭 확인!</p>
+      </div>
+      <div class="share">
+        <p class="s-icon">🗂️</p>
+        <h4>내부 아카이빙</h4>
+        <p>완성된 output 폴더를 OneDrive 팀 폴더에 보관. 다음 해 보고서의 출발점이 돼요.</p>
+        <p class="tiny muted">공유 권한(팀 내부/링크 공유)을 확인하세요.</p>
+      </div>
+    </div>
+
+    <div class="warn">
+      <h3>⚠️ GitHub Pages 등 외부 호스팅을 쓴다면</h3>
+      <ul>
+        <li>GitHub Pages 같은 서비스에 올린 페이지는 기본적으로 <b>인터넷에 공개</b>되고, 검색에 노출될 수도 있어요.</li>
+        <li>올리기 전에 <b>공개 범위</b>(누가 볼 수 있는지)와 <b>개인정보·아동 사진·대외비 수치</b>가 없는지 다시 확인하세요.</li>
+        <li>코드 저장소에 원본 자료(input 폴더)가 함께 올라가지 않았는지도 확인하세요.</li>
+        <li>팀·기관의 외부 게시 규정과 기업 파트너의 공개 동의를 먼저 확인하는 것이 좋아요.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 실제 사례: 이 홈페이지 제작기 ───────── -->
+<section class="section making" id="making">
+  <div class="wrap">
+    <p class="kicker">실제 사례 · 비하인드</p>
+    <h2 class="section-title">이 홈페이지도 이렇게 만들었어요</h2>
+    <p class="lead">제가 GPT에게 던진 <b>날것의 말</b>부터, Claude Code가 이 페이지를 만들고 고치기까지의 실제 기록을 그대로 공개합니다.</p>
+    <p class="hashtags"><span>#매우정리안됨</span> <span>#그러나_나의_GPT는_1년동안_나한테_두들겨맞음</span></p>
+
+    <ol class="mk-chain">
+      <li class="mk">
+        <p class="mk-step"><span>1</span>나 → GPT</p>
+        <h3>정리 안 된 말 그대로 던지기</h3>
+        <p class="tiny muted">오타·말투까지 그대로 옮겼어요. 이 정도로 시작해도 괜찮아요.</p>
+        <pre class="memo" id="mk-raw"></pre>
+      </li>
+      <li class="mk">
+        <p class="mk-step"><span>2</span>GPT → 나</p>
+        <h3>GPT가 짜준 레시피(프롬프트)</h3>
+        <p>날것의 메모가 <b>목표 · 페이지 구성 · 디자인 · 기술 지침 · 검수 기준</b>까지 갖춘 지시서로 바뀌었어요. <span class="muted tiny" id="mk-brief-len"></span></p>
+        <details class="mk-details">
+          <summary>GPT가 정리한 프롬프트 전체 보기</summary>
+          <pre class="prompt-out" id="mk-brief"></pre>
+        </details>
+        <button class="copy-btn" data-copy-target="mk-brief">프롬프트 전체 복사</button>
+      </li>
+      <li class="mk">
+        <p class="mk-step"><span>3</span>나 → Claude Code</p>
+        <h3>그대로 붙여넣기</h3>
+        <p>Claude 데스크톱 앱의 Code 탭에서 OneDrive 폴더를 열고, 2번 프롬프트를 <b>그대로 붙여넣었어요.</b> 따로 덧붙인 말은 없어요.</p>
+      </li>
+      <li class="mk">
+        <p class="mk-step"><span>4</span>Claude Code가 한 일</p>
+        <h3>확인 → 제작 → 직접 점검</h3>
+        <ol class="process">
+          <li><b>작업 폴더 확인</b> — OneDrive 안에 다른 프로젝트 폴더들이 있는 걸 보고, 이 가이드용 새 폴더(<code>gipa-vibecoding-guide</code>)를 따로 만듦</li>
+          <li><b>공식 설치 문서 확인</b> — 설치 명령어를 지어내지 않도록 Claude Code 공식 문서를 직접 열어 대조</li>
+          <li><b>파일 작성</b> — 페이지(index.html), 디자인(css), 동작(js), 설명서(README.md)</li>
+          <li><b>브라우저로 열어 점검</b> — 스타일 선택, 프롬프트 자동 생성, 복사 버튼, 체크리스트가 실제로 되는지 확인</li>
+          <li><b>문제 발견·수정</b> — 휴대폰 화면에서 설치 안내가 화면 밖으로 넘치는 걸 찾아서 고침</li>
+          <li><b>결과 보고</b> — 여는 방법, 파일 위치, 아직 확인 못 한 점까지 알려줌</li>
+        </ol>
+        <p class="tiny muted">Claude Code의 답변 문장을 그대로 옮긴 게 아니라, 실제로 진행된 일을 요약했어요.</p>
+      </li>
+      <li class="mk">
+        <p class="mk-step"><span>5</span>마이크로 수정 (실제 요청 그대로)</p>
+        <h3>맛보고 간 맞추기</h3>
+        <div class="mk-edit">
+          <p class="me-q">“월드비전 스타일로 오렌지 색으로 다시 어레인지해줘~ 어려워보여도 쉬워요. 하고,”</p>
+          <p class="me-a">→ 포인트 색을 초록에서 <b>월드비전 오렌지</b>로 바꾸고, 인트로에 ‘어려워 보여도 쉬워요.’ 배지를 추가. 말끝이 끊긴 것 같다며 덧붙일 내용이 있는지 되물어봄.</p>
+        </div>
+        <div class="mk-edit">
+          <p class="me-q">“실제로 내가 지피티에게 부탁한 말도 그대로 넣어줘 #매우정리안됨 …”</p>
+          <p class="me-a">→ 지금 보고 계신 이 <b>‘제작기’ 섹션</b>이 생김.</p>
+        </div>
+        <div class="mk-edit">
+          <p class="me-q">GPT가 정리해준 「홈페이지 고도화 프롬프트: 선영식 바이브코딩 방법론 추가」를 그대로 붙여넣음 <span class="muted tiny" id="mk-up-len"></span></p>
+          <p class="me-a">→ Claude Code가 참고 가이드를 브라우저로 열어 확인한 뒤, 겹치는 내용은 링크로 넘기고 <b>PART 1 생각법</b>(그림 먼저 5단계, 배민 예시, 두 가지 방식, 내 스타일 고르기·설계 워크시트)과 <b>의도 기반 마이크로 수정</b>을 추가함.</p>
+          <details class="mk-details">
+            <summary>고도화 프롬프트 전체 보기</summary>
+            <pre class="prompt-out" id="mk-upgrade"></pre>
+          </details>
+          <button class="copy-btn" data-copy-target="mk-upgrade">전체 복사</button>
+        </div>
+        <div class="mk-edit">
+          <p class="me-q">“아그리고 사전숙제로 클로드 설치랑 깃허브가입하기 미리해주라구...도 추가추가! 세션에들어오기전에 완료해주십쇼~”</p>
+          <p class="me-a">→ 맨 위에 <b>사전 숙제</b> 체크리스트가 생김. (작업 도중에 생각나서 덧붙인 요청도 이렇게 바로 반영돼요.)</p>
+        </div>
+        <p class="tiny muted">처음 프롬프트에는 “라임 그린”이라고 적혀 있었는데, 결과를 보고 한 줄로 바꿨어요. 이게 마이크로 수정이에요.</p>
+      </li>
+    </ol>
+
+    <p class="mk-lesson">정리 안 된 말로 시작해도 괜찮아요. <b>GPT가 정리하고 → Claude Code가 만들고 → 나는 보고 고치면</b> 됩니다. 단, 사실 확인은 끝까지 내 몫!</p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><b>기파팀 Claude Code 바이브코딩 실전 가이드</b> · 월드비전 기업파트너십팀 내부 교육용</p>
+    <p class="tiny">이 페이지의 ‘배민 2026 도시락 사업’과 모든 사업 내용·수치·학교 정보는 <b>교육용 가상 예시</b>이며 실제 사업 데이터가 아닙니다. Claude Code 설치 명령어는 2026년 10월 공식 문서 기준이며, 최신 내용은 <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">공식 문서</a>를 확인하세요.</p>
+    <p class="tiny"><a href="#intro">↑ 맨 위로</a></p>
+  </div>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="js/prompt.js"></script>
+<script src="js/making-of.js"></script>
+<script src="js/design-plan.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
