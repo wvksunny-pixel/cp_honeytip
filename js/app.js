@@ -73,27 +73,65 @@
       function () { toast('복사가 막혀 있어요. 글자를 직접 드래그해서 복사해 주세요.'); });
   });
 
-  /* ── 모바일 메뉴 ── */
+  /* ── 상단 메뉴: 그룹 펼치기 + 모바일 메뉴 ── */
   var menuBtn = $('.menu-toggle');
   var nav = $('#nav');
+  var groups = $$('.nav-group', nav);
+
+  function closeGroups(except) {
+    groups.forEach(function (g) {
+      if (g === except) return;
+      g.classList.remove('open');
+      $('.nav-top', g).setAttribute('aria-expanded', 'false');
+    });
+  }
+  function closeMobile() {
+    nav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  groups.forEach(function (g) {
+    $('.nav-top', g).addEventListener('click', function () {
+      var open = g.classList.toggle('open');
+      this.setAttribute('aria-expanded', String(open));
+      closeGroups(g);
+    });
+  });
   menuBtn.addEventListener('click', function () {
     var open = nav.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', String(open));
   });
   nav.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+    if (e.target.closest('a')) { closeGroups(); closeMobile(); }
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-group')) closeGroups();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeGroups(); closeMobile(); }
   });
 
-  /* ── 현재 보고 있는 단계 표시 ── */
-  var navLinks = $$('#nav a');
+  /* ── 지금 보고 있는 곳 표시 (메뉴 강조 + '현재 위치') ── */
+  var navLinks = $$('.nav-panel a', nav);
+  var where = $('#nav-where');
+  function markCurrent(href) {
+    var link = null;
+    navLinks.forEach(function (a) {
+      var on = a.getAttribute('href') === href;
+      a.classList.toggle('active', on);
+      if (on) link = a;
+    });
+    groups.forEach(function (g) { g.classList.toggle('is-current', !!link && g.contains(link)); });
+    if (!link) { where.textContent = ''; return; }
+    var group = link.closest('.nav-group');
+    var groupName = $('.nav-top', group).firstChild.textContent.trim();
+    var num = $('i', link);
+    where.innerHTML = escapeHtml(groupName) + ' › <b>' + (num ? num.textContent + '. ' : '') + escapeHtml($('b', link).textContent) + '</b>';
+  }
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
-      });
+      entries.forEach(function (en) { if (en.isIntersecting) markCurrent(en.target.dataset.nav); });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    navLinks.forEach(function (a) { var s = $(a.getAttribute('href')); if (s) io.observe(s); });
+    $$('main > section[data-nav]').forEach(function (sec) { io.observe(sec); });
   }
 
   /* ── 설치 탭 ── */
